@@ -121,7 +121,7 @@ const AdminHeader = () => {
           &nbsp;<b className="text-color">Add Curency</b>
         </Link>
       </li>
-      {/* <li className="nav-item">
+      <li className="nav-item">
         <Link
           to="/Admin/Currency/CommonBankAccounts"
           className="nav-link active"
@@ -130,7 +130,7 @@ const AdminHeader = () => {
           <FontAwesomeIcon icon={faCheckCircle} className="icon" />
           &nbsp;<b className="text-color">Common Bank Accounts</b>
         </Link>
-      </li> */}
+      </li>
       <ToastContainer />
     </ul>
   );

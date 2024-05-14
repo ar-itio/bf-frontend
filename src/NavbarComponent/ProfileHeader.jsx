@@ -44,9 +44,21 @@ const ProfileHeader = () => {
   if (customer) {
     return (
       <div className="dropdown">
-        <button className="nav-link active" aria-current="page" onClick={toggleDropdown}>
-          <b className="text-color">{customer.firstName} {customer.lastName}</b>
-          <img src={profileIcon} width="35" height="35" className="d-inline-block align-right" alt="" />
+        <button
+          className="nav-link active"
+          aria-current="page"
+          onClick={toggleDropdown}
+        >
+          <b className="text-color">
+            {customer.firstName} {customer.lastName}
+          </b>
+          <img
+            src={profileIcon}
+            width="35"
+            height="35"
+            className="d-inline-block align-right"
+            alt=""
+          />
         </button>
         {dropdownOpen && (
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -55,7 +67,13 @@ const ProfileHeader = () => {
             </Link>
             <button className="dropdown-item" onClick={handleSignOut}>
               Sign Out
-              <img src={signOutIcon} width="25" height="25" className="d-inline-block align-right" alt="" />
+              <img
+                src={signOutIcon}
+                width="25"
+                height="25"
+                className="d-inline-block align-right"
+                alt=""
+              />
             </button>
           </div>
         )}
@@ -63,13 +81,41 @@ const ProfileHeader = () => {
     );
   } else if (admin || bank) {
     return (
-      <div className="dropdown">
-        <button onClick={handleSignOut}>
-          <b className="text-color" style={{ marginRight: "5px" }}>
-            Sign Out
-          </b>
-          <img src={signOutIcon} width="30" height="30" className="d-inline-block align-right" alt="" />
-        </button>
+      <div className="row">
+        <div className="col dropdown">
+          <Link
+            to="/Admin/Currency/AdminAccount"
+            className="nav-link active"
+            aria-current="page"
+          >
+            {/* <FontAwesomeIcon icon={faCheckCircle} className="icon" /> */}
+            &nbsp;<b className="text-color">Admin Account</b>
+          </Link>
+        </div>
+        <div className="col dropdown">
+          <Link
+            to="/Admin/Currency/EditHostDetailsPage"
+            className="nav-link active"
+            aria-current="page"
+          >
+            {/* <FontAwesomeIcon icon={faCheckCircle} className="icon" /> */}
+            &nbsp;<b className="text-color">Hosting  Details </b>
+          </Link>
+        </div>
+        <div className="col dropdown">
+          <button onClick={handleSignOut}>
+            <b className="text-color" style={{ marginRight: "5px" }}>
+              Sign Out
+            </b>
+            <img
+              src={signOutIcon}
+              width="30"
+              height="30"
+              className="d-inline-block align-right"
+              alt=""
+            />
+          </button>
+        </div>
       </div>
     );
   } else {
