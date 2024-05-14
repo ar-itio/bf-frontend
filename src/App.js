@@ -1,4 +1,6 @@
 import "./App.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import AboutUs from "./page/AboutUs";
 import ContactUs from "./page/ContactUs";
@@ -44,44 +46,76 @@ import AdminTicket from "./TicketComponent/AdminTicket";
 import ForgetPassword from "./UserComponent/ForgetPassword";
 import ResetPassword from "./UserComponent/ResetPassword";
 import AddCurrency from "./CurrencyComponent/AddCurrency.jsx";
+import AdminAccount from "./CurrencyComponent/AdminAccount.jsx";
 import CommonBankAccounts from "./CurrencyComponent/CommonBankAccount.jsx";
-import { useEffect } from "react";
+import EditHostDetailsPage from "./CurrencyComponent/EditHostDetailsPage.jsx";
 
-function App() {  
+
+function App() {
+  const [profileImg, setProfileImg] = useState(null);
+  const [name, setName] = useState(null);
   useEffect(() => {
     document.body.style.backgroundImage = `url(${bg})`;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed"; // Keep the background image fixed while scrolling
+    fetchHostDetails();
     return () => {
       document.body.style.backgroundImage = "none";
       document.body.style.backgroundSize = "auto";
       document.body.style.backgroundAttachment = "scroll";
     };
   }, []);
+  const fetchHostDetails = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/currencies/fatchHostDetail`
+      );
+      const img = await import(`./images/${response.data.hostingDetail.logo}`);
+      setProfileImg(img.default);
+      setName(response.data.hostingDetail.longName);
+      document.documentElement.style.setProperty(
+        "--header-color",
+        response.data.hostingDetail.headerColor
+      );
+      document.documentElement.style.setProperty(
+        "--sidebar-color",
+        response.data.hostingDetail.sidebarColor
+      );
+      console.log(response);
+    } catch (error) {
+      setProfileImg(logo);
+      console.error("Error fetching host details:", error);
+    }
+  };
   return (
-    <div >
-        <RoleNav />
     <div>
-      <nav className="navbar navbar-expand-lg custom-bg text-color">
-        <div className="container-fluid text-color" >
-          <img 
-            src={logo}
-            width="50"
-            height="40"
-            className="d-inline-block align-top"
-            alt=""
-          />
-          <Link  className="navbar-brand me-auto mb-2 mb-lg-0">
-            <i>
-              <h3 className="text-color ms-3"> Online Banking System</h3>
-            </i>
-          </Link>
-          <div>
-          <ProfileHeader /></div>
-        </div>
-      </nav>
-    </div>       
-       <Routes>
+      <RoleNav />
+      <div className="header">
+        <nav className="navbar navbar-expand-lg  text-color">
+          <div className="container-fluid text-color">
+            <img
+              src={profileImg}
+              width="50"
+              height="40"
+              className="d-inline-block align-top"
+              alt=""
+            />
+            <Link className="navbar-brand me-auto mb-2 mb-lg-0">
+              <i>
+                {name ? (
+                  <h3 className="text-color ms-3">{name}</h3>
+                ) : (
+                  <p className="text-color ms-3">Online Banking System</p>
+                )}{" "}
+              </i>
+            </Link>
+            <div>
+              <ProfileHeader />
+            </div>
+          </div>
+        </nav>
+      </div>
+      <Routes>
         <Route path="/" element={<UserLoginForm />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/home/all/hotel/location" element={<HomePage />} />
@@ -171,10 +205,27 @@ function App() {
         <Route path="/admin/fee/detail/add" element={<AddFeeDetail />} />
         <Route path="/admin/fee/detail/view" element={<ViewFeeDetail />} />
         <Route path="/admin/fee/detail/email" element={<EmailTemplate />} />
-        <Route path="/customer/ticket/detail/UserTicket" element={<UserTicket />} />
-        <Route path="/Admin/ticket/detail/AdminTicket" element={<AdminTicket />} />
+        <Route
+          path="/customer/ticket/detail/UserTicket"
+          element={<UserTicket />}
+        />
+        <Route
+          path="/Admin/ticket/detail/AdminTicket"
+          element={<AdminTicket />}
+        />
         <Route path="/Admin/Currency/AddCurrency" element={<AddCurrency />} />
-        <Route path="/Admin/Currency/CommonBankAccounts" element={<CommonBankAccounts />} />
+        <Route
+          path="/Admin/Currency/CommonBankAccounts"
+          element={<CommonBankAccounts />}
+        />
+        <Route
+          path="/Admin/Currency/AdminAccount"
+          element={<AdminAccount />}
+        />
+        <Route
+          path="/Admin/Currency/EditHostDetailsPage"
+          element={<EditHostDetailsPage />}
+        />
         <Route path="/user/forget/password" element={<ForgetPassword />} />
 
         <Route path="/:customerId/reset-password" element={<ResetPassword />} />
