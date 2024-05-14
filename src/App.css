@@ -1,3 +1,7 @@
+:root {
+  --header-color: white; /* Default header color if not fetched */
+  --sidebar-color:#f6f6f6; /* Default footer color if not fetched */
+}
 .App {
   text-align: center;
 }
@@ -21,7 +25,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color:  var(--header-color);
 }
 
 .App-link {
@@ -70,38 +74,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-.sidebar {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: -250px; /* Hide the sidebar initially */
-  width: 250px;
-  height: 100%;
-  background-color: #f6f6f6; /* Adjust the background color as needed */
-  transition: left 0.3s ease; /* Add smooth transition effect */
-  padding-left: 10px; 
-  padding-top: 80px; 
-
-}
-.sidebar li {
-  cursor: pointer;
-  padding-left: 5px;
-  padding-right: 5px;
-
-  padding-top : 15px;
-  padding-bottom : 15px;
-
-  margin-bottom: 10px;
-  border-radius: 20px;
-  
-}
-.sidebar li:hover {
-  background-color: #dddbdb; 
-}
-
-.sidebar.show {
-  left: 0; /* Show the sidebar when the showSidebar state is true */
 }
 .mt-2{
   top: 0;
@@ -246,4 +218,50 @@
   height: 200px;
   border-radius: 100%;
   border: 2px solid #ccc;
+}.watermark {
+  font-size: 12px; /* Adjust font size as needed */
+  color: gray; /* Color of the watermark text */
+  margin-top: 5px; /* Adjust margin top as needed to position the watermark */
+}.logo-image{
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 120px;
+  border-radius: 10%;
+  border: 2px solid #ccc;
+}.header {
+  background-color: var(--header-color);
+}
+
+.sidebar {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: -250px; /* Hide the sidebar initially */
+  width: 250px;
+  height: 100%;
+  background-color: var(--sidebar-color); /* Adjust the background color as needed */
+  transition: left 0.3s ease; /* Add smooth transition effect */
+  padding-left: 10px; 
+  padding-top: 80px; 
+
+}
+.sidebar li {
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  padding-top : 15px;
+  padding-bottom : 15px;
+
+  margin-bottom: 10px;
+  border-radius: 20px;
+  
+}
+.sidebar li:hover {
+  background-color: #dddbdb; 
+}
+
+.sidebar.show {
+  left: 0; /* Show the sidebar when the showSidebar state is true */
 }
