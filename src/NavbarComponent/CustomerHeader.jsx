@@ -34,6 +34,16 @@ const CustomerHeader = () => {
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
       <li className="nav-item">
         <Link
+          to="/customer/UserAccounts"
+          className="nav-link active"
+          aria-current="page"
+        >
+          <FontAwesomeIcon icon={faListAlt} className="icon" />&nbsp;
+          <span className="text-color"> <strong>My Accounts</strong></span>
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
           to="/customer/add/money"
           className="nav-link active"
           aria-current="page"

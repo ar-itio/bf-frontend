@@ -45,11 +45,12 @@ import UserTicket from "./TicketComponent/UsertTcket";
 import AdminTicket from "./TicketComponent/AdminTicket";
 import ForgetPassword from "./UserComponent/ForgetPassword";
 import ResetPassword from "./UserComponent/ResetPassword";
+import UserAccounts from "./UserComponent/UserAccounts.jsx";
 import AddCurrency from "./CurrencyComponent/AddCurrency.jsx";
 import AdminAccount from "./CurrencyComponent/AdminAccount.jsx";
 import CommonBankAccounts from "./CurrencyComponent/CommonBankAccount.jsx";
 import EditHostDetailsPage from "./CurrencyComponent/EditHostDetailsPage.jsx";
-
+import ViewAllPendingCustomerAccounts from "./UserComponent/ViewAllPendingCustomersAccounts.jsx";
 
 function App() {
   const [profileImg, setProfileImg] = useState(null);
@@ -163,6 +164,10 @@ function App() {
           path="/admin/customer/pending"
           element={<ViewAllPendingCustomers />}
         />
+        <Route
+          path="/admin/customer/pendingAccounts"
+          element={<ViewAllPendingCustomerAccounts />}
+        />
         <Route path="/customer/add/money" element={<AddMoney />} />
         <Route
           path="/customer/account/money/transfer"
@@ -201,6 +206,7 @@ function App() {
           path="/customer/quick/account/transfer"
           element={<QuickAccountTransfer />}
         />
+        <Route path="/customer/UserAccounts" element={<UserAccounts />} />
         <Route path="/customer/beneficiary/quick/pay" element={<QuickPay />} />
         <Route path="/admin/fee/detail/add" element={<AddFeeDetail />} />
         <Route path="/admin/fee/detail/view" element={<ViewFeeDetail />} />
@@ -218,10 +224,7 @@ function App() {
           path="/Admin/Currency/CommonBankAccounts"
           element={<CommonBankAccounts />}
         />
-        <Route
-          path="/Admin/Currency/AdminAccount"
-          element={<AdminAccount />}
-        />
+        <Route path="/Admin/Currency/AdminAccount" element={<AdminAccount />} />
         <Route
           path="/Admin/Currency/EditHostDetailsPage"
           element={<EditHostDetailsPage />}

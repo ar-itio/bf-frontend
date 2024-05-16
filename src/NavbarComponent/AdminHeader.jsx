@@ -73,6 +73,16 @@ const AdminHeader = () => {
       </li>
       <li className="nav-item">
         <Link
+          to="/admin/customer/pendingAccounts"
+          className="nav-link active"
+          aria-current="page"
+        >
+          <FontAwesomeIcon icon={faUserClock} className="icon" />
+          &nbsp;<b className="text-color">Pending Customers Accounts</b>
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link
           to="/admin/all/bank/customers"
           className="nav-link active"
           aria-current="page"
