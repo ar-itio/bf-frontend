@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-const AddFeeDetail = () => {
+const AddFeeDetail = (obj) => {
   let navigate = useNavigate();
 
   const [feeRequest, setFeeRequest] = useState({
@@ -46,8 +46,14 @@ const AddFeeDetail = () => {
       if (types) {
         setFeeTypes(types);
       }
+      setFeeRequest(obj?.feeDetail||{
+        type: "",
+        fee: "",
+        feeAmount:"",
+    
+      });
     };
-
+  console.log(obj.feeDetail);
     getAlltypes();
   }, []);
 
@@ -126,11 +132,11 @@ const AddFeeDetail = () => {
           style={{ width: "25rem" }}
         >
           <div className="card-header bg-color text-center custom-bg-text">
-            <h4 className="card-title">Add Fee Detail</h4>
+            <h4 className="card-title">{obj.feeDetail !== null ? "Edit" : "Add"} Fee Detail</h4>
           </div>
           <div className="card-body">
             <form>
-              <div class="mb-3 text-color">
+              <div class="mb-3 text-color" style={{ display: obj.feeDetail !==null ? "none" : "block" }}>
                 <label for="role" class="form-label">
                   <b>Fee Type</b>
                 </label>
@@ -138,6 +144,7 @@ const AddFeeDetail = () => {
                   onChange={handleUserInput}
                   className="form-control"
                   name="type"
+                  value={feeRequest.type}
                 >
                   <option value="">Select Fee Type</option>
                   {feeTypes.map((type) => {
@@ -180,7 +187,7 @@ const AddFeeDetail = () => {
                 className="btn bg-color custom-bg-text"
                 onClick={addFeeDetail}
               >
-                Add fee Detail
+                Save 
               </button>
               <ToastContainer />
             </form>

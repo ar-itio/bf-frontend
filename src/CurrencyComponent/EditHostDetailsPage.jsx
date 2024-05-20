@@ -104,8 +104,9 @@ const EditHostDetailsPage = () => {
         draggable: true,
         progress: undefined,
       });
-      window.location.reload();
-
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       console.error("Error deleting update Hosting Detail:", error);
       // Handle error
@@ -123,7 +124,7 @@ const EditHostDetailsPage = () => {
         <div
           className="card form-card ms-5 me-5 mb-5 custom-bg border-color"
           style={{
-            height: "55rem",
+            height: "50rem",
           }}
         >
           <div className="card-header custom-bg-text text-center bg-color">

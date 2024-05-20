@@ -31,7 +31,7 @@ const AdminHeader = () => {
 
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <Link
           to="/admin/fee/detail/add"
           className="nav-link active"
@@ -40,7 +40,7 @@ const AdminHeader = () => {
           <FontAwesomeIcon icon={faPlus} className="icon" />
           &nbsp;<b className="text-color">Add Fee</b>
         </Link>
-      </li>
+      </li> */}
       <li className="nav-item">
         <Link
           to="/admin/fee/detail/view"
@@ -48,7 +48,7 @@ const AdminHeader = () => {
           aria-current="page"
         >
           <FontAwesomeIcon icon={faEye} className="icon" />
-          &nbsp;<b className="text-color">View Fee</b>
+          &nbsp;<b className="text-color">View Fee Details</b>
         </Link>
       </li>
       <li className="nav-item">
@@ -78,7 +78,7 @@ const AdminHeader = () => {
           aria-current="page"
         >
           <FontAwesomeIcon icon={faUserClock} className="icon" />
-          &nbsp;<b className="text-color">Pending Customers Accounts</b>
+          &nbsp;<b className="text-color">Pending  Accounts</b>
         </Link>
       </li>
       <li className="nav-item">
@@ -128,7 +128,7 @@ const AdminHeader = () => {
           aria-current="page"
         >
           <FontAwesomeIcon icon={faCheckCircle} className="icon" />
-          &nbsp;<b className="text-color">Add Curency</b>
+          &nbsp;<b className="text-color">Add Currency</b>
         </Link>
       </li>
       <li className="nav-item">
