@@ -22,7 +22,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editedAccount.currencyMap[0].id === accounts.currencyMap[0].id) {
+    if (editedAccount.currencyMap[0].id) {
       // Notify the user to select currencies
       toast.error("Please select currencies", {
         position: "top-center",
