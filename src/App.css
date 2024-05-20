@@ -264,4 +264,8 @@
 
 .sidebar.show {
   left: 0; /* Show the sidebar when the showSidebar state is true */
+}.modal-2{
+  padding-top: 10px;
+  padding-left:330px;
+}.modal-body{  padding:20px;
 }
