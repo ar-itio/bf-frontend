@@ -22,6 +22,19 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(editedAccount);
+    if(!editedAccount.currencyMap || editedAccount.currencyMap.length === 0 || editedAccount.currencyMap[0].length === 0){
+      toast.error("Please select currencies", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
     if (editedAccount.currencyMap[0].id) {
       // Notify the user to select currencies
       toast.error("Please select currencies", {
@@ -295,7 +308,7 @@ const AdminAccount = () => {
       <div
         className="card form-card ms-5 me-5 mb-5 custom-bg border-color"
         style={{
-          height: "50rem",
+          height: "45rem",
         }}
       >
         <div className="card-header custom-bg-text text-center bg-color">

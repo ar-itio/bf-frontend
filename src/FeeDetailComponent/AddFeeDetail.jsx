@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-const AddFeeDetail = (obj) => {
+const AddFeeDetail = (obj,closeModal) => {
   let navigate = useNavigate();
 
   const [feeRequest, setFeeRequest] = useState({
@@ -39,7 +39,9 @@ const AddFeeDetail = (obj) => {
 
     return response.data;
   };
-
+  const handleClose = (e) => {
+    window.location.href = "/admin/fee/detail/view";
+  };
   useEffect(() => {
     const getAlltypes = async () => {
       const types = await retrieveAllFeeType();
@@ -181,7 +183,12 @@ const AddFeeDetail = (obj) => {
                   required
                 />
               </div>
-
+              <button  type="submit"
+                onClick={handleClose}
+                className="btn bg-color custom-bg-text"
+        >
+          close
+        </button>&nbsp;
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"

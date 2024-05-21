@@ -240,10 +240,10 @@ const ViewAllPendingCustomerAccounts = () => {
               style={{
                 height: "30rem",
                 width: "40rem",
-              }}
+              }}S
             >
               <div className="card-header custom-bg-text text-center bg-color">
-                <h2>Transactions Details</h2>
+                <h2>Account Details</h2>
               </div>
               <div className="modal-header">
                 <div className="col-md-6">

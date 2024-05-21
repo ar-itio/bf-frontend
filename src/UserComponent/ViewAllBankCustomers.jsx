@@ -206,7 +206,7 @@ const ViewAllBankCustomers = () => {
               className="card custom-bg border-color"
               style={{
                 height: "45rem",
-                width: "80rem",
+                width: "50rem",
               }}
             >
               <div className="card-header custom-bg-text text-center bg-color">
@@ -233,7 +233,7 @@ const ViewAllBankCustomers = () => {
           </div> <div className="row mb-3">
             <div className="col-md-3">
               <label><b>Address:</b></label>
-              <input type="text" value={editTransaction?.address || ""} onChange={(e) => setEditTransaction({ ...editTransaction, address: e.target.value })} className="form-control"/>
+              <input type="text" value={editTransaction?.street || ""} onChange={(e) => setEditTransaction({ ...editTransaction, street: e.target.value })} className="form-control"/>
             </div>
             <div className="col-md-3">
               <label><b>City:</b></label>
@@ -323,9 +323,9 @@ const ViewAllBankCustomers = () => {
           <div className="row mb-3">
             <div className="col-md-3">
               <label><b>Profile Complete:</b></label>
-              <select className="form-select" value={editTransaction?.profileComplete ? "Yes" : "No"} onChange={(e) => setEditTransaction({ ...editTransaction, profileComplete: e.target.value === "Yes" })}>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+              <select className="form-select" value={editTransaction?.profileComplete ? true : false} onChange={(e) => setEditTransaction({ ...editTransaction, profileComplete: e.target.value  })}>
+                <option value= "true">Yes</option>
+                <option value ="false">No</option>
               </select>
             </div>
             <div className="col-md-3">

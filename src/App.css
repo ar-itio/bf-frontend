@@ -230,20 +230,23 @@
   border-radius: 10%;
   border: 2px solid #ccc;
 }.header {
-  background-color: var(--header-color);
+  background-color: var(--header-color); /* Adjust background color as needed */
+  height: 80px;
+
 }
 
 .sidebar {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: -250px; /* Hide the sidebar initially */
   width: 250px;
-  height: 100%;
+  height: 93%;
   background-color: var(--sidebar-color); /* Adjust the background color as needed */
+  overflow-y: auto; /* Allow scrolling within the sidebar */
+  position: fixed; /* Fix the sidebar position */
+  top: 75px; /* Place below the header */
+  left: 0;
+  padding-left: 10px;
+  padding-top: 20px; /* Adjust padding if needed */
   transition: left 0.3s ease; /* Add smooth transition effect */
-  padding-left: 10px; 
-  padding-top: 80px; 
+  z-index: 500; /* Ensure the sidebar is below the header */
 
 }
 .sidebar li {
@@ -251,15 +254,19 @@
   padding-left: 5px;
   padding-right: 5px;
 
-  padding-top : 15px;
-  padding-bottom : 15px;
-
+  padding-top : 5px;
+  padding-bottom : 10px;
+  
   margin-bottom: 10px;
-  border-radius: 20px;
+  /* border-radius: 10px; */
+  border-bottom: 1px solid #aca8a8; /* Underline on hover */
+
   
 }
 .sidebar li:hover {
-  background-color: #dddbdb; 
+  background-color: #d0cdcd; 
+  border-bottom: 1px solid #000; /* Underline on hover */
+
 }
 
 .sidebar.show {
@@ -268,4 +275,8 @@
   padding-top: 10px;
   padding-left:330px;
 }.modal-body{  padding:20px;
+}.right-align {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Ensure this aligns the ProfileHeader to the right */
 }
