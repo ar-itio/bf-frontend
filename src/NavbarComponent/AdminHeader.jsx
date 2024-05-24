@@ -141,6 +141,26 @@ const AdminHeader = () => {
           &nbsp;<b className="text-color">Common Bank Accounts</b>
         </Link>
       </li>
+      <li className="nav-item">
+          <Link
+            to="/Admin/Currency/AdminAccount"
+            className="nav-link active"
+            aria-current="page"
+          >
+            <FontAwesomeIcon icon={faCheckCircle} className="icon" />
+            &nbsp;<b className="text-color">Admin Account</b>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/Admin/Currency/EditHostDetailsPage"
+            className="nav-link active"
+            aria-current="page"
+          >
+            <FontAwesomeIcon icon={faCheckCircle} className="icon" />
+            &nbsp;<b className="text-color">Hosting  Details </b>
+          </Link>
+        </li>
       <ToastContainer />
     </ul>
   );

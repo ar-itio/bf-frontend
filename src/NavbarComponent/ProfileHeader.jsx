@@ -82,13 +82,13 @@ const ProfileHeader = () => {
   } else if (admin || bank) {
     return (
       <div className="row">
-        <div className="col dropdown">
+        {/* <div className="col dropdown">
           <Link
             to="/Admin/Currency/AdminAccount"
             className="nav-link active"
             aria-current="page"
           >
-            {/* <FontAwesomeIcon icon={faCheckCircle} className="icon" /> */}
+            <FontAwesomeIcon icon={faCheckCircle} className="icon" />
             &nbsp;<b className="text-color">Admin Account</b>
           </Link>
         </div>
@@ -98,10 +98,10 @@ const ProfileHeader = () => {
             className="nav-link active"
             aria-current="page"
           >
-            {/* <FontAwesomeIcon icon={faCheckCircle} className="icon" /> */}
+            <FontAwesomeIcon icon={faCheckCircle} className="icon" />
             &nbsp;<b className="text-color">Hosting  Details </b>
           </Link>
-        </div>
+        </div> */}
         <div className="col dropdown">
           <button onClick={handleSignOut}>
             <b className="text-color" style={{ marginRight: "5px" }}>
