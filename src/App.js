@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import RoleNav from "./NavbarComponent/RoleNav";
 import ProfileHeader from "./NavbarComponent/ProfileHeader";
 import HomePage from "./page/HomePage";
+import AdminDashboard from "./page/AdminDashboard";
 import UserRegister from "./UserComponent/UserRegister";
 import UserLoginForm from "./UserComponent/UserLoginForm";
 import AdminRegisterForm from "./UserComponent/AdminRegisterForm";
@@ -119,6 +120,7 @@ function App() {
       <Routes>
         <Route path="/" element={<UserLoginForm />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/home/all/hotel/location" element={<HomePage />} />
         <Route path="contact" element={<ContactUs />} />
         <Route path="about" element={<AboutUs />} />
