@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyBill, faExchangeAlt, faUserPlus, faEye, faListAlt, faTicketAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMoneyBill, faExchangeAlt, faUserPlus, faEye, faListAlt, faTicketAlt,faMortarBoard } from "@fortawesome/free-solid-svg-icons";
 
 const CustomerHeader = () => {
   let navigate = useNavigate();
@@ -32,7 +32,17 @@ const CustomerHeader = () => {
 
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
-      <li className="nav-item">
+      <li className="nav-item card">
+        <Link
+          to="/home"
+          className="nav-link active"
+          aria-current="page"
+        >
+          <FontAwesomeIcon icon={faListAlt} className="icon" />&nbsp;
+          <span className="text-color"> <strong>Dashboard</strong></span>
+        </Link>
+      </li>
+      <li className="nav-item card">
         <Link
           to="/customer/UserAccounts"
           className="nav-link active"
@@ -42,7 +52,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>My Accounts</strong></span>
         </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item card">
         <Link
           to="/customer/add/money"
           className="nav-link active"
@@ -52,7 +62,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>Add Money</strong></span>
         </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item card">
         <Link
           to="/customer/account/money/transfer"
           className="nav-link active"
@@ -62,7 +72,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>Account Transfer</strong></span>
         </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item card">
         <Link
           to="/customer/beneficiary/add"
           className="nav-link active"
@@ -72,7 +82,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>Add Beneficiary</strong></span>
         </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item card">
         <Link
           to="/customer/beneficiary/view"
           className="nav-link active"
@@ -82,7 +92,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>View Beneficiary</strong></span>
         </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item card">
         <Link
           to="/customer/transaction/all"
           className="nav-link active"
@@ -92,7 +102,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>My Transactions</strong></span>
         </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item card">
         <Link
           to="/customer/ticket/detail/UserTicket"
           className="nav-link active"
