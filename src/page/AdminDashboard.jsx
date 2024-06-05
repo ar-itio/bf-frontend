@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import "../Dashboard.css";
 
 const Dashboard = () => {
   const [transactions, setTransactions] = useState([]);
+  const [accounts, setAccounts] = useState([]);
   const user = JSON.parse(sessionStorage.getItem("active-Admin"));
   const admin_jwtToken = sessionStorage.getItem("admin-jwtToken");
   const [selectedAccount, setSelectedAccount] = useState(null);
@@ -113,7 +115,7 @@ const Dashboard = () => {
           closed: statusCounts.inactive,
           rejected: statusCounts.suspended,
         },
-        currencyAmounts,
+        // currencyAmounts,
         activeAccounts,
       }));
     };
@@ -180,6 +182,65 @@ const Dashboard = () => {
       }));
     };
 
+    const fetchAccountData = async () => {
+      try {
+        // Fetch account data from the server
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/api/currencies/fatchAccount`
+        );
+        // Update the account state with the fetched data
+        setAccounts(response.data.commonBankAccountDetais);
+      } catch (error) {
+        // Handle error
+        console.error("Error fetching account data:", error);
+        // Notify error
+        toast.error("Failed to fetch account data", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    };
+
+    const fetchCurrencies = async () => {
+      try {
+        // Make GET request to the API endpoint to fetch currencies
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/api/currencies/fatch`
+        );
+    
+        // Extract currency details from the response
+        const currencyAmounts = response.data.currencyDetails.map(({ name, accountBalance }) => ({
+          currency:name,
+          amount: 0,
+        }));
+    
+        setData((prevData) => ({
+          ...prevData,
+          currencyAmounts,
+        }));
+      } catch (error) {
+        // Handle error if fetching data fails
+        console.error("Error fetching currencies:", error);
+        // Notify error
+        toast.error("Failed to fetch currencies", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    };
+    // Call the fetchCurrencies function when the component mounts
+    fetchCurrencies();
+    // fetchAccountData();
     fetchData();
     fetchtransactions();
     retrieveAllBeneficiary();
@@ -198,13 +259,8 @@ const Dashboard = () => {
     // setAccountTransactions(response.data.transactions);
   };
 
-  const handleBackClick = () => {
-    setSelectedAccount(null);
-    setAccountTransactions([]);
-  };
-
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container d">
       <div className="dashboard-header-A">
         <h2>Admin Dashboard</h2>
       </div>
@@ -312,13 +368,17 @@ const Dashboard = () => {
           </div>
         </Link>
       </div>
-
-      <div className="dashboard-main">
-        {/* <div className="currency-chart">
-          <h3>Currency Amounts</h3>
+      <div className="dashboard-summary">
+        <div className=" A ">
+          <h3>Added Currency</h3>
           <CurrencyChart data={data.currencyAmounts} />
-        </div> */}
-
+        </div>
+        <div className="monthly-transactions-chart A">
+          <h3>Monthly Credit and Debit Transactions</h3>
+          <MonthlyTransactionsChart transactions={transactions} />
+        </div>
+      </div>
+      <div className="dashboard-main">
         <div className="active-accounts">
           <div className="user-cards">
             <h3 className="card-heder dashboard-header-A">Active Users:</h3>
@@ -338,10 +398,6 @@ const Dashboard = () => {
         </div>
       </div>
       <div>
-        <div className="currency-chart">
-          <h3>Currency Use In Admin Account</h3>
-          <CurrencyChart data={data.currencyAmounts} />
-        </div>
         <CurrencyConverter
           transactions={transactions}
           setTransactions={setTransactions}
@@ -453,7 +509,7 @@ const CurrencyChart = ({ data }) => {
                 marginRight: "10px",
               }}
             ></div>
-            <span>{`${currency}: ${amount}`}</span>
+            <span>{`${currency}`}</span>
           </div>
         ))}
       </div>
@@ -585,5 +641,143 @@ const CurrencyConverter = ({ transactions }) => {
     </div>
   );
 };
+
+const MonthlyTransactionsChart = ({ transactions }) => {
+  const canvasRef = useRef(null);
+  const [hoveredMonth, setHoveredMonth] = useState(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    const getMonthlyData = (transactions, type) => {
+      const monthlyData = Array(12).fill(0);
+
+      transactions.forEach((transaction) => {
+        const date = new Date(transaction.date);
+        if (transaction.type === type) {
+          monthlyData[date.getMonth()] += transaction.billAmount;
+        }
+      });
+
+      return monthlyData;
+    };
+
+    const getMonthlyasDebit = (transactions, type) => {
+      const monthlyData = Array(12).fill(0);
+      console.log(transactions);
+      transactions.forEach((transaction) => {
+        const date = new Date(transaction.date);
+        if (transaction.beneficiaryName!==null) {
+          monthlyData[date.getMonth()] += transaction.billAmount;
+        }
+      });
+
+      return monthlyData;
+    };
+
+    const creditData = getMonthlyData(transactions, "Deposit");
+    const debitData = getMonthlyasDebit(transactions, "Account Transfer");
+
+    const drawChart = () => {
+      const labels = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+      const maxAmount = Math.max(...creditData, ...debitData);
+      const chartHeight = 400;
+      const chartWidth = 800;
+      const barWidth = chartWidth / (labels.length * 2);
+      const scale = chartHeight / maxAmount;
+
+      // Clear the canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the axes
+      ctx.beginPath();
+      ctx.moveTo(50, 50);
+      ctx.lineTo(50, chartHeight + 50);
+      ctx.lineTo(chartWidth + 50, chartHeight + 50);
+      ctx.stroke();
+      ctx.font = "13px Arial"; // Adjust font size here
+
+      // Draw the bars
+      labels.forEach((label, i) => {
+        const xCredit = 60 + i * 2 * barWidth;
+        const xDebit = xCredit + barWidth;
+        const yCredit = chartHeight + 50 - creditData[i] * scale;
+        const yDebit = chartHeight + 50 - debitData[i] * scale;
+
+        // Draw credit bar
+        ctx.fillStyle = "rgba(54, 162, 235, 0.6)";
+        ctx.fillRect(xCredit, yCredit, barWidth, creditData[i] * scale);
+
+        // Draw debit bar
+        ctx.fillStyle = "rgba(255, 99, 132, 0.6)";
+        ctx.fillRect(xDebit, yDebit, barWidth, debitData[i] * scale);
+
+        // Draw labels
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+        ctx.fillText(label, xCredit + barWidth / 2, chartHeight + 70);
+
+        // Save coordinates for hover detection
+        if (
+          mouseX >= xCredit &&
+          mouseX <= xCredit + barWidth &&
+          mouseY >= yCredit &&
+          mouseY <= chartHeight + 50
+        ) {
+          setHoveredMonth(i);
+        }
+      });
+
+      // Draw legend
+      ctx.fillStyle = "rgba(54, 162, 235, 0.6)";
+      ctx.fillRect(chartWidth - 100, 20, 20, 20);
+      ctx.fillStyle = "black";
+      ctx.fillText("Credit", chartWidth - 60, 35);
+
+      ctx.fillStyle = "rgba(255, 99, 132, 0.6)";
+      ctx.fillRect(chartWidth - 100, 50, 20, 20);
+      ctx.fillStyle = "black";
+      ctx.fillText("Debit", chartWidth - 60, 65);
+    };
+
+    const handleMouseMove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      mouseX = x;
+      mouseY = y;
+      drawChart();
+    };
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    canvas.addEventListener("mousemove", handleMouseMove);
+
+    drawChart();
+
+    return () => {
+      canvas.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [transactions, hoveredMonth]);
+
+  return <canvas ref={canvasRef} width={900} height={500}></canvas>;
+};
+
 
 export default Dashboard;
