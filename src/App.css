@@ -73,6 +73,9 @@
 .mt-2{
   padding-top: 80px;
   padding-left:210px;
+  /* margin-right:10px; */
+  width: 102%;
+  flex: auto;
 }
 .InnerSidebar {
   padding-left: 0;
