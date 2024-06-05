@@ -42,11 +42,27 @@ const AddFeeDetail = (obj,closeModal) => {
   const handleClose = (e) => {
     window.location.href = "/admin/fee/detail/view";
   };
+  const retrieveFeeDetails = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/api/fee/detail/fetch/all`,
+      {
+        headers: {
+          Authorization: "Bearer " + admin_jwtToken,
+        },
+      }
+    );
+    console.log(response.data);
+    return response.data.feeDetails;
+  };
   useEffect(() => {
     const getAlltypes = async () => {
+      const feeResponse = await retrieveFeeDetails();
       const types = await retrieveAllFeeType();
-      if (types) {
-        setFeeTypes(types);
+      console.log(feeResponse);
+      const feeDetailTypes = feeResponse.map(detail => detail.type);
+      const filteredTypes = types.filter(type => !feeDetailTypes.includes(type));  
+      if (filteredTypes.length > 0) {
+        setFeeTypes(filteredTypes);
       }
       setFeeRequest(obj?.feeDetail||{
         type: "",
