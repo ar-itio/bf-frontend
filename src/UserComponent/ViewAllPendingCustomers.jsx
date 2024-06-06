@@ -97,7 +97,7 @@ const ViewAllPendingCustomers = () => {
             <h2>All Pending Customers</h2>
           </div>
 
-           {/ For Showing  Massege   /}
+           {/*For Showing  Massege   */}
           <div className="card-body" style={{ overflowY: "auto" }}> 
             {allCustomer.length === 0 ? (
               <div className="text-center mt-3">
