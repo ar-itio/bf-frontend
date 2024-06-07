@@ -68,7 +68,7 @@ const AdminHeader = () => {
           aria-current="page"
         >
           <FontAwesomeIcon icon={faUserClock} className="icon" />
-          &nbsp;<b className="text-color">Wallet ApprovedRequest</b>
+          &nbsp;<b className="text-color">Wallet Approvel Request</b>
         </Link>
       </li>
       <li className="nav-item card">
@@ -139,7 +139,7 @@ const AdminHeader = () => {
           aria-current="page"
         >
           <FontAwesomeIcon icon={faEye} className="icon" />
-          &nbsp;<b className="text-color">View FeeDetails</b>
+          &nbsp;<b className="text-color">View Fee Details</b>
         </Link>
       </li>
       <li className="nav-item card">
