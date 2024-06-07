@@ -98,7 +98,7 @@ const AdminHeader = () => {
             aria-current="page"
           >
             <FontAwesomeIcon icon={faCheckCircle} className="icon" />
-            &nbsp;<b className="text-color">Admin BankAccount</b>
+            &nbsp;<b className="text-color">Admin Bank Account</b>
           </Link>
         </li>
       
@@ -109,7 +109,7 @@ const AdminHeader = () => {
           aria-current="page"
         >
           <FontAwesomeIcon icon={faCheckCircle} className="icon" />
-          &nbsp;<b className="text-color">Common BankAccounts</b>
+          &nbsp;<b className="text-color">Common Bank Accounts</b>
         </Link>
       </li>
       <li className="nav-item card">
