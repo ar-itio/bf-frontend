@@ -75,7 +75,6 @@
   padding-left:210px;
   /* margin-right:10px; */
   width: 102%;
-  flex: auto;
 }
 .InnerSidebar {
   padding-left: 0;
@@ -163,7 +162,7 @@
   position: absolute;
   background-color: #f6f6f6;
   min-width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
   z-index: 1;
 }
 
@@ -298,4 +297,192 @@
 }
 .Toastify__toast{
 margin-top: 60px;
+}
+
+
+
+
+html {
+  font-size: 16px;
+
+}
+
+/* Responsive typography */
+body {
+  font-size: 1rem; /* Base font size */
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.1rem; /* Increase font size for medium screens */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 1.2rem; /* Further increase font size for large screens */
+  }
+}
+
+/* Responsive layout */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Limit container width */
+  margin: 0 auto; /* Center container horizontally */
+  padding: 0 20px; /* Add padding to the sides */
+  padding-top: 80px;
+}
+
+/* Responsive navigation menu */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+}
+
+.nav-item {
+
+  
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive forms */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Responsive buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Media query for adjusting button size on small screens */
+@media screen and (max-width: 576px) {
+  .btn {
+    padding: 8px 16px;
+  }
+}
+
+
+
+
+
+/* For  TFA Security Page */
+.auth-container {
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-left: 250px;
+}
+
+.auth-form-group {
+  margin-bottom: 15px;
+}
+
+.auth-checkbox {
+  margin-right: 10px;
+}
+
+.auth-label {
+  font-weight: bold;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.auth-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background-color: #0056b3;
+}
+
+.auth-button-disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.auth-success-message-panel {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.auth-success-icon {
+  font-size: 24px;
+  color: green;
+  margin-right: 10px;
+}
+
+.auth-success-message {
+  font-size: 18px;
+  color: green;
+}
+
+.auth-qr-code img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .auth-input {
+    padding: 8px;
+  }
+
+  .auth-button {
+    font-size: 14px;
+  }
+
+  .auth-success-message-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .auth-success-icon {
+    margin-bottom: 5px;
+  }
+}
+
+.error-message {
+  color: red;
 }
