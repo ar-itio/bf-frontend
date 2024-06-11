@@ -35,10 +35,14 @@ const UserLoginForm = () => {
       .then((result) => result.json())
       .then((res) => {
         if (res.success) {
-          if (res.user.twoFactorEnabled) {
-            setUserRes(res);
-            setAuthResponse(res);
-            setShowOtpInput(true);
+          if (res.user && res.user.twoFactorEnabled !== null) {
+            if (res.user.twoFactorEnabled) {
+              setUserRes(res);
+              setAuthResponse(res);
+              setShowOtpInput(true);
+            } else {
+              handleLoginSuccess(res);
+            }
           } else {
             handleLoginSuccess(res);
           }
