@@ -52,6 +52,7 @@ import AdminAccount from "./CurrencyComponent/AdminAccount.jsx";
 import CommonBankAccounts from "./CurrencyComponent/CommonBankAccount.jsx";
 import EditHostDetailsPage from "./CurrencyComponent/EditHostDetailsPage.jsx";
 import ViewAllPendingCustomerAccounts from "./UserComponent/ViewAllPendingCustomersAccounts.jsx";
+import TwofectorVerification from "./Security/TwofectorVerification.jsx";
 
 function App() {
   const [profileImg, setProfileImg] = useState(null);
@@ -234,6 +235,8 @@ function App() {
         <Route path="/user/forget/password" element={<ForgetPassword />} />
 
         <Route path="/:customerId/reset-password" element={<ResetPassword />} />
+        <Route path="/customer/security" element={<TwofectorVerification />} />
+
       </Routes>
     </div>
   );
