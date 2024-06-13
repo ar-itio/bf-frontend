@@ -9,7 +9,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const ProfileHeader = () => {
+const ProfileHeader = ({toggleSidebar}) => {
   const navigate = useNavigate();
   const customer = JSON.parse(sessionStorage.getItem("active-customer"));
   const admin = JSON.parse(sessionStorage.getItem("active-admin"));
@@ -72,29 +72,29 @@ const ProfileHeader = () => {
   if (customer) {
     // fetchAccountData();
     return (
-      <div className="dropdown">
+      <div className="dropdown nav-items ">
         <button
           className="nav-link active"
           aria-current="page"
           onClick={toggleDropdown}
         >
-          <b className="text-color">
+          <b className="nav-items">
             {customer.firstName} {customer.lastName}
           </b>
           <img
             src={profileIcon}
             width="35"
             height="35"
-            className="d-inline-block align-right"
+            className="d-inline-block align-right nav-items"
             alt=""
           />
         </button>
         {dropdownOpen && (
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <Link className="dropdown-item" to="/customer/profile">
+          <div className="dropdown-menu " aria-labelledby="dropdownMenuButton">
+            <Link className="dropdown-item" to="/customer/profile"  onClick={toggleSidebar} > 
               Profile
             </Link>
-            <Link className="dropdown-item" to="/customer/security">
+            <Link className="dropdown-item" to="/customer/security"  onClick={toggleSidebar}  >
             Security
           </Link>
             <button className="dropdown-item" onClick={handleSignOut}>
