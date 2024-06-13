@@ -847,3 +847,276 @@ body {
 }
 .d{  height: 2200px;
 }
+
+
+
+
+
+
+
+/* Dashboard Styles for Small Screens */
+
+@media screen and (max-width: 576px) {
+  /* Adjustments for body */
+  body {
+    font-size: 14px; /* Adjusted font size for smaller screens */
+  }
+
+  /* Adjustments for dashboard container */
+  .dashboard-container {
+    padding-top: 45px; /* Adjusted padding top for smaller screens */
+    padding-left: 10px;
+    padding-right: 10px;
+    height: auto; /* Adjusted height for smaller screens */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Adjustments for various elements */
+  .dashboard-header,
+  .summary-item,
+  .summary-item h3,
+  .summary-item p,
+  .summary-detail h6,
+  .summary-detail p,
+  .currency-chart,
+  .dashboard-sections,
+  .currency-chart,
+  .active-accounts,
+  .account-card,
+  .account-card .account-details,
+  .account-card .account-number,
+  .account-card .account-balance,
+  .account-card .account-currency,
+  .back-button,
+  .transaction-item,
+  .transaction-date,
+  .transaction-amount,
+  .currency-converter h3,
+  .amount-input,
+  .currency-select,
+  .to-text,
+  .convert-button,
+  .conversion-result,
+  .user-card,
+  .user-card .user-details,
+  .user-card .user-name,
+  .user-card .user-email,
+  .user-card .user-role,
+  .transaction-table th,
+  .transaction-table td,
+  .transaction-table-A th,
+  .transaction-table-A td,
+  .monthly-transactions-chart .credit-label, 
+  .monthly-transactions-chart .debit-label {
+    font-size: 14px; /* Adjusted font size for smaller screens */
+  }
+
+  /* Additional adjustments for specific elements */
+  .currency-chart {
+    width: 100%; /* Adjusted width for smaller screens */
+    height: auto; /* Adjusted height for smaller screens */
+  }
+
+  .transaction-list {
+    border-radius: 10px; /* Adjusted border radius for smaller screens */
+    background: linear-gradient(90deg, #d1e9cb 20%, #f1f0f1 150%);
+    border-left: 5px solid #2a721c;
+  }
+
+  .monthly-transactions-chart {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    height: auto; /* Adjusted height for smaller screens */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-size: 14px;
+  }
+
+  /* Additional adjustments for size */
+  .summary-item {
+    padding: 10px; /* Adjusted padding for summary items */
+    margin: 5px; /* Adjusted margin for summary items */
+  }
+
+  .summary-detail {
+    margin: 5px; /* Adjusted margin for summary details */
+    height: auto; /* Adjusted height for summary details */
+  }
+
+  .account-card {
+    padding: 10px; /* Adjusted padding for account cards */
+    width: 45%; /* Adjusted width for account cards */
+  }
+
+  .user-card {
+    padding: 10px; /* Adjusted padding for user cards */
+    width: 45%; /* Adjusted width for user cards */
+  }
+
+  .transaction-table {
+    width: 100%; /* Adjusted width for transaction tables */
+  }
+
+  .transaction-table th,
+  .transaction-table td {
+    padding: 8px 10px; /* Adjusted padding for table cells */
+  }
+
+  /* Even child adjustments */
+  .summary-item:nth-child(even) {
+    margin-right: 5px; /* Adjusted margin for even summary items */
+  }
+
+  .user-card:nth-child(even) {
+    margin-right: 5px; /* Adjusted margin for even user cards */
+  }
+}
+
+
+
+
+
+
+/* Mobile First Styles */
+
+
+/* Mobile Styles */
+@media screen and (max-width: 576px) {
+  .summary-item,
+  .summary-detail,
+  .user-card {
+    flex: 1 1 auto;
+  }
+
+  .dashboard-container {
+    padding: 10px;
+    padding-top: 40px;
+  }
+
+  .dashboard-header-A,
+  .dashboard-header {
+    text-align: center;
+    font-size: 20px;
+    height: 60px;
+  }
+
+  .dashboard-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .summary-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .summary-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .summary-detail {
+    flex: 1 1 100px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .dashboard-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .user-cards, .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .user-card {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-card p {
+    margin: 5px 0;
+  }
+
+  .chip {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 50%;
+  }
+
+  .currency-converter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+  }
+
+  .transaction-table-A,
+  .transaction-form-A,
+  .transaction-table,
+  .transaction-form {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px; /* Adjusted font size for smaller screens */
+    width: 100%;
+  }
+
+  .transaction-table {
+    padding: 20px;
+  }
+
+  .transaction-table-A th,
+  .transaction-table-A td,
+  .transaction-table th,
+  .transaction-table td {
+    padding: 1px;
+    font-size: 12px;
+  }
+
+  .currency-converter {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .amount-input,
+  .currency-select,
+  .convert-button {
+    width: 100%;
+  }
+
+  .to-text {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .conversion-result {
+    text-align: center;
+  }
+
+  .currency-chart {
+    margin-top: 20px;
+    width: 100%;
+  }
+}

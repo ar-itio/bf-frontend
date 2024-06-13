@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBill, faExchangeAlt, faUserPlus, faEye, faListAlt, faTicketAlt,faMortarBoard } from "@fortawesome/free-solid-svg-icons";
 
-const CustomerHeader = () => {
+const CustomerHeader = ({toggleSidebar}) => {
   let navigate = useNavigate();
 
   const customer = JSON.parse(sessionStorage.getItem("active-customer"));
@@ -32,7 +32,7 @@ const CustomerHeader = () => {
 
   return (
     <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5">
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/home"
           className="nav-link active"
@@ -42,7 +42,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>Dashboard</strong></span>
         </Link>
       </li>
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/customer/UserAccounts"
           className="nav-link active"
@@ -52,7 +52,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>My Accounts</strong></span>
         </Link>
       </li>
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/customer/add/money"
           className="nav-link active"
@@ -62,7 +62,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>Add Money</strong></span>
         </Link>
       </li>
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/customer/account/money/transfer"
           className="nav-link active"
@@ -72,7 +72,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>Account Transfer</strong></span>
         </Link>
       </li>
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/customer/beneficiary/add"
           className="nav-link active"
@@ -82,7 +82,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>Add Beneficiary</strong></span>
         </Link>
       </li>
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/customer/beneficiary/view"
           className="nav-link active"
@@ -92,7 +92,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>View Beneficiary</strong></span>
         </Link>
       </li>
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/customer/transaction/all"
           className="nav-link active"
@@ -102,7 +102,7 @@ const CustomerHeader = () => {
           <span className="text-color"> <strong>My Transactions</strong></span>
         </Link>
       </li>
-      <li className="nav-item card">
+      <li className="nav-item card" onClick={toggleSidebar}>
         <Link
           to="/customer/ticket/detail/UserTicket"
           className="nav-link active"

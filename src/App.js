@@ -57,6 +57,8 @@ import TwofectorVerification from "./Security/TwofectorVerification.jsx";
 function App() {
   const [profileImg, setProfileImg] = useState(null);
   const [name, setName] = useState(null);
+  const [showSidebar, setShowSidebar] = useState(true); // State to control sidebar visibility
+
   useEffect(() => {
     document.body.style.backgroundImage = `url(${bg})`;
     document.body.style.backgroundSize = "cover";
@@ -68,6 +70,7 @@ function App() {
       document.body.style.backgroundAttachment = "scroll";
     };
   }, []);
+
   const fetchHostDetails = async () => {
     try {
       const response = await axios.get(
@@ -90,31 +93,59 @@ function App() {
       console.error("Error fetching host details:", error);
     }
   };
+
+  const isMobile = () => {
+    return window.innerWidth <= 768; // You can adjust this width based on your design
+  };
+
+  const toggleSidebar = () => {
+    if (isMobile()) {
+      setShowSidebar(!showSidebar);
+    }
+  };
+  const toggleSidebar2 = () => {
+    if (isMobile()) {
+      setShowSidebar(false);
+    }
+  };
+
   return (
     <div>
-      <RoleNav />
-      <div className="header">
+{showSidebar && <RoleNav toggleSidebar={toggleSidebar} />}    
+  <div className="header">
         <nav className="navbar navbar-expand-lg  text-color">
           <div className="container-fluid text-color">
             <img
               src={profileImg}
-              width="50"
+              width="40"
               height="40"
-              className="d-inline-block align-top"
+              className="d-inline-block nav-items "
               alt=""
             />
             <Link className="navbar-brand me-auto mb-2 mb-lg-0">
               <i>
                 {name ? (
-                  <h3 className="text-color ms-3">{name}</h3>
+                  <h3 className="text-color ms-3 nav-items">{name}</h3>
                 ) : (
-                  <p className="text-color ms-3">Online Banking System</p>
+                  <p className="text-color ms-3 nav-items">Online Banking System</p>
                 )}{" "}
               </i>
             </Link>
-            <div>
-              <ProfileHeader />
-            </div>
+            <div className=" nav-items">
+              <ProfileHeader  toggleSidebar={toggleSidebar2}/>
+            </div> &nbsp;
+            <button
+              className="navbar-toggler  nav-items  " 
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onClick={toggleSidebar} // Call toggleSidebar function when the button is clicked
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
           </div>
         </nav>
       </div>
