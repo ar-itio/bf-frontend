@@ -2,6 +2,7 @@
   --header-color: white; /* Default header color if not fetched */
   --sidebar-color:#f6f6f6; /* Default footer color if not fetched */
 }
+
 .App {
   text-align: center;
 }
@@ -71,10 +72,10 @@
   }
 }
 .mt-2{
-  padding-top: 80px;
-  padding-left:210px;
-  /* margin-right:10px; */
-  width: 102%;
+  padding-top: 70px;
+  padding-left:250px;
+  font-size: 14px;
+   width: 100%;
 }
 .InnerSidebar {
   padding-left: 0;
@@ -258,7 +259,7 @@
   left: 0;
   padding-left: 10px;
     /* background: linear-gradient(90deg, #a1bde4 0%, #a1bde4 100%); */
-
+  
   padding-top: 20px; /* Adjust padding if needed */
   transition: left 0.3s ease; /* Add smooth transition effect */
   z-index: 500; /* Ensure the sidebar is below the header */
@@ -270,7 +271,7 @@
   padding-right: 5px;
   padding-top : 5px;
   padding-bottom : 10px;
-  
+  font-size: 14px;
   /* background: linear-gradient(90deg, #b7b8ba 0%, #f1f3f4 100%); */
   margin-bottom: 10px;
   /* border-radius: 10px; */
@@ -286,6 +287,10 @@
 
 .sidebar.show {
   left: 0; /* Show the sidebar when the showSidebar state is true */
+
+
+
+  
 }.modal-2{
   padding-top: 80px;
   padding-left:330px;
@@ -487,7 +492,11 @@ select {
   color: red;
 }
 
+.register{width: 100%; align-items: center;  padding-top: 80px;
+  font-size: 14px;
+  padding-left: 25%;  padding-right: 25%;
 
+}
 
 
 
@@ -505,16 +514,25 @@ select {
   .header {
     height: 60px;
   }
-
-  .header .nav-items {
-    display: block; /* Display navigation items vertically on small screens */
-    font-size: 10px; /* Smaller font size for mobile */
+  .register{width: 100%; align-items: center; 
+    font-size: 14px;
+    padding: 1%;
+    padding-top: 70px;
+  
   }
+  
 
+  .nav-items {
+    display: block; /* Display navigation items vertically on small screens */
+    font-size: 14px; /* Smaller font size for mobile */
+  }
   .header .toggle-button {
     display: block; /* Display toggle button on small screens */
-  }
 
+  }
+  .a,.mt-2{font-size: 11px;}
+
+  .card{font-size: 9px;}  
   .sidebar {
     width: 100%;
     top: 60px;
@@ -540,7 +558,7 @@ select {
   }
 
   .mt-2 {
-    padding-top: 4rem; /* Adjust padding top for smaller screens */
+    padding-top: 3rem; /* Adjust padding top for smaller screens */
     padding-left: 0rem; /* Adjust padding left for smaller screens */
   }
   .auth-container {
@@ -652,6 +670,11 @@ select {
     padding: 10px;
     font-size: 0.875rem;
   }
-.header{
+  
+
 }
-}
+.sidebar
+{
+  /* background: linear-gradient(90deg, #a5b9d9 20%, #8aa1c9 150%); */
+
+}.header{font-size:14px;}

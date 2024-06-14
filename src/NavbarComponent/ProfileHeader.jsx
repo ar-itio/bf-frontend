@@ -78,7 +78,7 @@ const ProfileHeader = ({toggleSidebar}) => {
           aria-current="page"
           onClick={toggleDropdown}
         >
-          <b className="nav-items">
+          <b className="nav-items a">
             {customer.firstName} {customer.lastName}
           </b>
           <img

@@ -995,12 +995,12 @@ body {
 
   .dashboard-container {
     padding: 10px;
-    padding-top: 40px;
+    padding-top: 60px;
   }
 
   .dashboard-header-A,
   .dashboard-header {
-    text-align: center;
+    text-align: top;
     font-size: 20px;
     height: 60px;
   }
@@ -1030,7 +1030,7 @@ body {
     flex: 1 1 100px;
     padding: 5px;
     border-radius: 5px;
-    background-color: #fff;
+    /* background-color: #fff; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
@@ -1119,4 +1119,35 @@ body {
     margin-top: 20px;
     width: 100%;
   }
+}
+.dashboard-header,
+.summary-detail h6,
+.summary-detail p,
+.currency-chart,
+.dashboard-sections,
+.currency-chart,
+.active-accounts,
+
+.back-button,
+.transaction-item,
+.transaction-date,
+.transaction-amount,
+.currency-converter h3,
+.amount-input,
+.currency-select,
+.to-text,
+.convert-button,
+.conversion-result,
+.user-card,
+.user-card .user-details,
+.user-card .user-name,
+.user-card .user-email,
+.user-card .user-role,
+.transaction-table th,
+.transaction-table td,
+.transaction-table-A th,
+.transaction-table-A td,
+.monthly-transactions-chart .credit-label, 
+.monthly-transactions-chart .debit-label {
+  font-size: 12px; /* Adjusted font size for smaller screens */
 }

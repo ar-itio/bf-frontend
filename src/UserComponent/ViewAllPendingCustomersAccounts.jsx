@@ -157,7 +157,7 @@ const ViewAllPendingCustomerAccounts = () => {
     <div>
       <div className="mt-2" style={{ display: showModal ? "none" : "block" }}>
         <div
-          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
+          className="card   "
           style={{
             height: "45rem",
           }}
