@@ -158,9 +158,9 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
   return (
     <div>
       <div style={{ display: showModal ? "none" : "block" }}>
-        <div className="mt-2">
+      <div className="mt-2">
           <div
-            className="card  "
+            className="card"
             style={{
               height: "45rem",
             }}
@@ -177,11 +177,6 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
               <h3>Added User Accounts</h3>
               <button
                 className="btn btn-primary"
-                style={{
-                  position: "absolute",
-                  top: "80px", // Adjust as needed
-                  right: "50px", // Adjust as needed
-                }}
                 onClick={() => setShowModal(true)}
               >
                 Add Account <FaPlus />
@@ -275,7 +270,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
         </div>
       </div>
       <div className="mb-2" style={{ display: showModal ? "block" : "none" }}>
-        <div className="mt-2 d-flex aligns-items-center justify-content-center">
+        <div className="mt-2 ">
           <div
             className="card form-card border-color custom-bg"
             style={{ width: "25rem" }}

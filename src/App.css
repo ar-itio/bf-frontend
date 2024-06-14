@@ -499,7 +499,7 @@ select {
 }
 
 
-
+.me-2{height: 80%;width: 100%; font-size: medium;}
 
 
 @media screen and (max-width: 576px) {
@@ -510,7 +510,13 @@ select {
   .App-header {
     font-size: calc(8px + 2vmin);
   }
-
+  .Toastify__toast{
+    margin-top: 0px;
+    width: 50%;
+    height:40%;
+    align-items: center;
+    margin-left: 25%;
+    }
   .header {
     height: 60px;
   }
@@ -643,9 +649,6 @@ select {
     padding: 10px;
   }
 
-  .Toastify__toast {
-    margin-top: 30px;
-  }
 
   .circle {
     width: 20px;
@@ -671,10 +674,58 @@ select {
     font-size: 0.875rem;
   }
   
-
+  .me-2,.btn{ font-size: x-small;}
 }
-.sidebar
-{
-  /* background: linear-gradient(90deg, #a5b9d9 20%, #8aa1c9 150%); */
 
-}.header{font-size:14px;}
+
+
+
+.header{font-size:14px;}
+
+
+
+
+
+
+
+
+
+
+
+
+.dataContainer {
+  margin-right: 20px;
+  flex: 1 1 auto;
+}
+
+.dataItem {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+}
+
+.colorBox {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.canvas {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+
+
+  .dataContainer {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .canvas {
+    width: 150%;
+    height: auto;
+  }
+}

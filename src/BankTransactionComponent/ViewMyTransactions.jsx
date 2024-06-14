@@ -88,7 +88,7 @@ const ViewMyTransactions = () => {
     <div>
       <div className="mt-2">
         <div
-          className="card "
+          className="card   "
           style={{
             height: "45rem",
           }}
@@ -102,9 +102,9 @@ const ViewMyTransactions = () => {
               overflowY: "auto",
             }}
           >
-            <div className="d-flex aligns-items-center justify-content-center mt-3">
-              <form class="row g-3">
-                <div class="col-auto">
+            <div className=" mt-3">
+              <form class="row">
+                <div class="col">
                   <input
                     onChange={(e) => setTempTransactionRefId(e.target.value)}
                     className="form-control"
@@ -113,23 +113,26 @@ const ViewMyTransactions = () => {
                   />
                 </div>
 
-                <div class="col-auto">
-                  <button
+                <div class="col">
+                  <button 
                     type="submit"
-                    class="btn bg-color custom-bg-text mb-3"
+                    class="btn bg-color custom-bg-text  ms-5 mb-3"
                     onClick={searchTxns}
                   >
                     Search
                   </button>
                 </div>
-              </form>
-
-              <button
+                <div class="col">
+                <button
                 class="btn bg-color custom-bg-text ms-5 mb-3"
                 onClick={generatePDF}
               >
                 Download Statement
               </button>
+              </div>
+              </form>
+
+
             </div>
 
             <div className="table-responsive mt-3">
