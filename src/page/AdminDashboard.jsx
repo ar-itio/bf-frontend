@@ -513,7 +513,7 @@ const CurrencyChart = ({ data }) => {
           </div>
         ))}
       </div>
-      <canvas ref={canvasRef} width={400} height={400} />
+      <canvas ref={canvasRef} width={300} height={350} />
     </div>
   );
 };

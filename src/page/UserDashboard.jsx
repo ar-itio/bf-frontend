@@ -450,31 +450,18 @@ const CurrencyChart = ({ data }) => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ marginRight: "20px" }}>
-        {data.map(({ currency, amount }, index) => (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "10px",
-            }}
-          >
-            <div
-              style={{
-                width: "20px",
-                height: "20px",
-                backgroundColor: getColor(index),
-                marginRight: "10px",
-              }}
-            ></div>
-            <span>{`${currency}: ${amount}`}</span>
-          </div>
-        ))}
-      </div>
-      <canvas ref={canvasRef} width={400} height={400} />
+    <div className="container">
+    <div className="dataContainer">
+      {data.map(({ currency, amount }, index) => (
+        <div key={index} className="dataItem">
+          <div className="colorBox" style={{ backgroundColor: getColor(index) }}></div>
+          <span>{`${currency}: ${amount}`}</span>
+        </div>
+      ))}
     </div>
+    <canvas ref={canvasRef} className="canvas"></canvas>
+  </div>
+
   );
 };
 
