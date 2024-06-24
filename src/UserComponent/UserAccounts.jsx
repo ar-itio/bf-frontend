@@ -176,7 +176,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
             >
               <h4>Added User Accounts</h4>
               <button  
-                className=" col btn-primary "  
+                className=" btn btn-primary "  
                 onClick={() => setShowModal(true)}
               >
                 Add Account <FaPlus />
