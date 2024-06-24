@@ -14,7 +14,7 @@ const ViewAllPendingCustomerAccounts = () => {
   const [updateUserStatusRequest, setUpdateUserStatusRequest] = useState({
     userId: "",
     status: "",
-    currencyId:"",
+    currencyId: "",
   });
 
   const admin_jwtToken = sessionStorage.getItem("admin-jwtToken");
@@ -163,7 +163,7 @@ const ViewAllPendingCustomerAccounts = () => {
           }}
         >
           <div className="card-header custom-bg-text text-center">
-            <h4 className=" text-color " >All Pending Cutsomers Accounts</h4>
+            <h4 className=" text-color ">All Pending Cutsomers Accounts</h4>
           </div>
           <div
             className="card-body"
@@ -191,28 +191,29 @@ const ViewAllPendingCustomerAccounts = () => {
                     return (
                       <tr>
                         <td>
-                          <b>{user.name}</b>
+                          <b>{user?.name || "N/A"}</b>
                         </td>
                         <td>
-                          <b>{user.email}</b>
+                          <b>{user?.email || "N/A"}</b>
                         </td>
                         <td>
-                          <b>{user.gender}</b>
+                          <b>{user?.gender || "N/A"}</b>
                         </td>
                         <td>
-                          <b>{user.contact}</b>
+                          <b>{user?.contact || "N/A"}</b>
                         </td>
                         {/* <td> */}
                         {/* <b>{customer.accountNumber}</b> */}
                         {/* </td> */}
                         <td>
-                          <b>{customer.currency}</b>
+                          <b>{customer?.currency || "N/A"}</b>
                         </td>
                         <td>
-                          <b>{customer.status}</b>
+                          <b>{customer?.status || "N/A"}</b>
                         </td>
                         <td>
-                          &nbsp;<button
+                          &nbsp;
+                          <button
                             className="btn btn-primary"
                             onClick={() =>
                               handleEditTransaction(customer, user)
@@ -220,7 +221,6 @@ const ViewAllPendingCustomerAccounts = () => {
                           >
                             <FontAwesomeIcon icon={faEdit} />
                           </button>
-
                           <ToastContainer />
                         </td>
                       </tr>
@@ -235,12 +235,9 @@ const ViewAllPendingCustomerAccounts = () => {
       <div className="mt-2 " style={{ display: showModal ? "block" : "none" }}>
         <div className="modal-dialog">
           <div className="modal-content">
-            <div
-              className="card  custom-bg border-color "
-
-            >
+            <div className="card  custom-bg border-color ">
               <div className="card-header custom-bg-text text-center">
-                <h4 className=" text-color " >Account Details</h4>
+                <h4 className=" text-color ">Account Details</h4>
               </div>
               <div className="modal-header">
                 <div className="col-md-6">
@@ -248,7 +245,7 @@ const ViewAllPendingCustomerAccounts = () => {
                 </div>
               </div>
               <div className="modal-body">
-              <div className="row mb-3">
+                <div className="row mb-3">
                   <div className="col-md-6">
                     <b>Assign Currency:</b>{" "}
                     {editTransaction?.customer?.currency || "None"}
@@ -273,8 +270,7 @@ const ViewAllPendingCustomerAccounts = () => {
                     {editTransaction?.user?.companyAddress || "None"}
                   </div>
                   <div className="col-md-6">
-                    <b>Pin code:</b>{" "}
-                    {editTransaction?.user?.pincode || "None"}
+                    <b>Pin code:</b> {editTransaction?.user?.pincode || "None"}
                   </div>
                 </div>
                 <div className="row mb-3">
@@ -283,8 +279,7 @@ const ViewAllPendingCustomerAccounts = () => {
                     {editTransaction?.user?.contact || "None"}
                   </div>
                   <div className="col-md-6">
-                    <b>Email:</b>{" "}
-                    {editTransaction?.user?.email || "None"}
+                    <b>Email:</b> {editTransaction?.user?.email || "None"}
                   </div>
                 </div>
                 <div className="row mb-3">
@@ -315,7 +310,8 @@ const ViewAllPendingCustomerAccounts = () => {
                   </div>
                   <div className="modal-footer">
                     <div className="col-md-">
-                      &nbsp;<button
+                      &nbsp;
+                      <button
                         type="button"
                         style={{ marginRight: "10px" }}
                         className="btn btn-primary"
@@ -323,7 +319,8 @@ const ViewAllPendingCustomerAccounts = () => {
                       >
                         Close
                       </button>
-                      &nbsp;<button
+                      &nbsp;
+                      <button
                         type="button"
                         className="btn btn-primary"
                         onClick={handleSubmitEdit}
