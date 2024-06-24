@@ -127,8 +127,8 @@ const EditHostDetailsPage = () => {
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Edit Host Details</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Edit Host Details</h4>
           </div>
           <div
             className="card-body d-flex flex-column"
@@ -263,8 +263,8 @@ const EditHostDetailsPage = () => {
                       </div>
                       <div className="accordion" id="smtpAccordion">
                         <div className="accordion-item">
-                          <h2 className="accordion-header" id="smtpHeader">
-                            <button
+                          <h4 className="accordion-header" id="smtpHeader">
+                            &nbsp;<button
                               className="accordion-button"
                               type="button"
                               data-bs-toggle="collapse"
@@ -274,7 +274,7 @@ const EditHostDetailsPage = () => {
                             >
                               SMTP Satting
                             </button>
-                          </h2>
+                          </h4>
                           <div
                             id="smtpCollapse"
                             className="accordion-collapse collapse show"
@@ -354,7 +354,7 @@ const EditHostDetailsPage = () => {
                           </div>
                         </div>
                       </div>
-                      <button type="submit" className="btn btn-primary">
+                      &nbsp;<button type="submit" className="btn btn-primary">
                         Save Changes
                       </button>
                     </form>

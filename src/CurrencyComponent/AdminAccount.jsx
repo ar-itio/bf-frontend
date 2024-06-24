@@ -249,7 +249,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
             </div>
             <div className="modal-footer">
               &nbsp;
-              <button
+              &nbsp;<button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleSubmit}
@@ -311,8 +311,8 @@ const AdminAccount = () => {
           height: "45rem",
         }}
       >
-        <div className="card-header custom-bg-text text-center bg-color">
-          <h2>Admin Accounts Detail</h2>
+        <div className="card-header custom-bg-text text-center">
+          <h4 className=" text-color " >Admin Accounts Detail</h4>
         </div>
         <div
           className="card-body d-flex flex-column"

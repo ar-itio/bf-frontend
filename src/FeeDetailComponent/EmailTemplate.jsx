@@ -116,8 +116,8 @@ const EmailTemplate = () => {
             height: '45rem',
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Email Templates</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Email Templates</h4>
           </div>
           <div
             className="card-body"
@@ -142,7 +142,7 @@ const EmailTemplate = () => {
                       <td>{detail.emailMessage}</td>
                       <td>{detail.code}</td>
                       <td>
-                        <button onClick={() => handleEditClick(index)}>Edit</button>
+                        &nbsp;<button onClick={() => handleEditClick(index)}>Edit</button>
                       </td>
                     </tr>
                   ))}
@@ -153,7 +153,7 @@ const EmailTemplate = () => {
         </div>
       </div>
       {/* <div className="text-center mb-3">
-        <button className="btn btn-primary" onClick={() => handleEditClick()}>Add Template</button>
+        &nbsp;<button className="btn btn-primary" onClick={() => handleEditClick()}>Add Template</button>
       </div> */}
       {editRowIndex !== null && (
         <div className="modal" style={{ display: showModal ? "block" : "none" }}>
@@ -161,7 +161,7 @@ const EmailTemplate = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">{editRowIndex !== null ? "Edit" : "Add"} Email Template</h5>
-                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
+                &nbsp;<button type="button" className="btn-close" onClick={handleCloseModal}></button>
               </div>
               <div className="modal-body">
                 <div className="mb-3">
@@ -178,10 +178,10 @@ const EmailTemplate = () => {
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
+                &nbsp;<button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
                   Close
                 </button>
-                <button type="button" className="btn btn-primary" onClick={handleSaveChanges}>
+                &nbsp;<button type="button" className="btn btn-primary" onClick={handleSaveChanges}>
                   Save changes
                 </button>
               </div>

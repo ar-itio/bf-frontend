@@ -55,8 +55,8 @@ const ViewFeeDetail = () => {
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Fee Details</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Fee Details</h4>
           </div>
           <div
             className="card-body"
@@ -66,7 +66,7 @@ const ViewFeeDetail = () => {
           >
             <div className="table-responsive mt-3">
               <h3>Added Fee Details</h3>
-              <button
+              &nbsp;<button
                 className="btn btn-primary"
                 style={{
                   position: "absolute",
@@ -93,7 +93,7 @@ const ViewFeeDetail = () => {
                       <td><b>{detail.fee}</b></td>
                       <td><b>{detail.feeAmount}</b></td>
                       <td>
-                        <button
+                        &nbsp;<button
                           className="btn btn-primary me-2"
                           onClick={() => handleEdit(detail)}
                         >

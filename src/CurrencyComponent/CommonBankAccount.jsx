@@ -159,7 +159,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
     <div>
       <div style={{ display: showModal ? "none" : "block" }}>
         <h3>Added Common Bank Accounts</h3>
-        <button
+        &nbsp;<button
           className="btn btn-primary"
           style={{
             position: "absolute",
@@ -220,13 +220,13 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                 </td>
                 <td>{account.status}</td>
                 <td>
-                  <button
+                  &nbsp;<button
                     className="btn btn-primary me-2"
                     onClick={() => handleEdit(index)}
                   >
                     <FaEdit />
                   </button>
-                  <button
+                  &nbsp;<button
                     className="btn btn-danger"
                     onClick={() => handleDelete(account)}
                   >
@@ -245,7 +245,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
               <h5 className="modal-title">
                 {editIndex !== "" ? "Edit" : "Add"} Common Bank Account
               </h5>
-              <button
+              &nbsp;<button
                 type="button"
                 className="btn-close"
                 onClick={handleCloseModal}
@@ -373,7 +373,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
               </form>
             </div>
             <div className="modal-footer">
-              <button
+              &nbsp;<button
                 type="button"
                 className="btn btn-secondary"
                 onClick={handleCloseModal}
@@ -381,7 +381,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                 Close
               </button>
               &nbsp;
-              <button
+              &nbsp;<button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleSubmit}
@@ -447,8 +447,8 @@ const CurrencyApp = () => {
           height: "45rem",
         }}
       >
-        <div className="card-header custom-bg-text text-center bg-color">
-          <h2>Common Bank Accounts Detail</h2>
+        <div className="card-header custom-bg-text text-center">
+          <h4 className=" text-color " >Common Bank Accounts Detail</h4>
         </div>
         <div
           className="card-body d-flex flex-column"
