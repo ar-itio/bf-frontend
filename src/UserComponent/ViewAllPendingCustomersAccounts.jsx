@@ -162,8 +162,8 @@ const ViewAllPendingCustomerAccounts = () => {
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>All Pending Cutsomers Accounts</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >All Pending Cutsomers Accounts</h4>
           </div>
           <div
             className="card-body"
@@ -212,7 +212,7 @@ const ViewAllPendingCustomerAccounts = () => {
                           <b>{customer.status}</b>
                         </td>
                         <td>
-                          <button
+                          &nbsp;<button
                             className="btn btn-primary"
                             onClick={() =>
                               handleEditTransaction(customer, user)
@@ -232,18 +232,15 @@ const ViewAllPendingCustomerAccounts = () => {
           </div>
         </div>
       </div>
-      <div className="modal " style={{ display: showModal ? "block" : "none" }}>
+      <div className="mt-2 " style={{ display: showModal ? "block" : "none" }}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div
               className="card  custom-bg border-color "
-              style={{
-                height: "30rem",
-                width: "40rem",
-              }}S
+
             >
-              <div className="card-header custom-bg-text text-center bg-color">
-                <h2>Account Details</h2>
+              <div className="card-header custom-bg-text text-center">
+                <h4 className=" text-color " >Account Details</h4>
               </div>
               <div className="modal-header">
                 <div className="col-md-6">
@@ -318,7 +315,7 @@ const ViewAllPendingCustomerAccounts = () => {
                   </div>
                   <div className="modal-footer">
                     <div className="col-md-">
-                      <button
+                      &nbsp;<button
                         type="button"
                         style={{ marginRight: "10px" }}
                         className="btn btn-primary"
@@ -326,7 +323,7 @@ const ViewAllPendingCustomerAccounts = () => {
                       >
                         Close
                       </button>
-                      <button
+                      &nbsp;<button
                         type="button"
                         className="btn btn-primary"
                         onClick={handleSubmitEdit}

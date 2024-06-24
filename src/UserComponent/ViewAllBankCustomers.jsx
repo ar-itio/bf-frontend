@@ -128,8 +128,8 @@ const ViewAllBankCustomers = () => {
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>All Bank Customers</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >All Bank Customers</h4>
           </div>
           <div
             className="card-body"
@@ -183,7 +183,7 @@ const ViewAllBankCustomers = () => {
                           <b>{customer.status}</b>
                         </td>
                         <td>
-                          <button
+                          &nbsp;<button
                             className="btn btn-primary me-2"
                             onClick={() => handleEdit(customer)}
                           >
@@ -199,18 +199,15 @@ const ViewAllBankCustomers = () => {
           </div>
         </div>
       </div>
-      <div className="modal-2" style={{ display: showModal ? "block" : "none" }}>
+      <div className="mt-2" style={{ display: showModal ? "block" : "none" }}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div
               className="card custom-bg border-color"
-              style={{
-                height: "45rem",
-                width: "50rem",
-              }}
+   
             >
-              <div className="card-header custom-bg-text text-center bg-color">
-                <h2>Customer Details</h2>
+              <div className="card-header custom-bg-text text-center">
+                <h4 className=" text-color " >Customer Details</h4>
               </div>
               <div className="modal-body">
                 <div className="row mb-3">
@@ -343,7 +340,7 @@ const ViewAllBankCustomers = () => {
             </div>
             </div>
                 <div className="modal-footer">
-                  <button
+                  &nbsp;<button
                     type="button"
                     style={{ marginRight: "10px" }}
                     className="btn btn-primary"
@@ -351,7 +348,7 @@ const ViewAllBankCustomers = () => {
                   >
                     Close
                   </button>
-                  <button
+                  &nbsp;<button
                     type="button"
                     className="btn btn-primary"
                     onClick={handleSubmitEdit}

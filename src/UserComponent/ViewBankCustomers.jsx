@@ -228,8 +228,8 @@ const ViewBankCustomers = () => {
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>All Bank Customers</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >All Bank Customers</h4>
           </div>
           <div
             className="card-body"

@@ -72,8 +72,8 @@
   }
 }
 .mt-2{
-  padding-top: 70px;
-  padding-left:250px;
+  padding-top: 50px;
+  padding-left:200px;
   font-size: 14px;
    width: 100%;
 }
@@ -178,9 +178,6 @@
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-menu {
   display: block;
-}.nav-item{
-  padding-right: 5px;
-  
 }.modal{
   padding-top: 40px;
   padding-left:210px;
@@ -229,9 +226,10 @@
   height: 120px;
   border-radius: 10%;
   border: 2px solid #ccc;
-}.header {
+}
+.header {
   background-color: var(--header-color); /* Adjust background color as needed */
-  height: 80px; /* Adjust the height as needed */
+  height: 60px; /* Adjust the height as needed */
   width: 100%;
   position: fixed;
   top: 0;
@@ -240,7 +238,7 @@
   flex-direction: column;
   /* align-items: center; */
   justify-content: center;
-  /* background: linear-gradient(90deg, #a1bde4 0%, #f3f4f5 100%); */
+  background: linear-gradient(90deg, #282f4b 0%, #282f4b 100%);
 
   /* font-size: calc(10px + 2vmin); */
   color: var(--header-color);
@@ -250,50 +248,57 @@
 }
 
 .sidebar {
-  width: 250px;
+  width: 200px;
   height: 93%;
   background-color: var(--sidebar-color); /* Adjust the background color as needed */
   overflow-y: auto; /* Allow scrolling within the sidebar */
   position: fixed; /* Fix the sidebar position */
-  top: 75px; /* Place below the header */
+  top: 55px; /* Place below the header */
   left: 0;
   padding-left: 10px;
-    /* background: linear-gradient(90deg, #a1bde4 0%, #a1bde4 100%); */
+    background: linear-gradient(90deg, #282f4b 0%, #282f4b 100%);
   
   padding-top: 20px; /* Adjust padding if needed */
   transition: left 0.3s ease; /* Add smooth transition effect */
   z-index: 500; /* Ensure the sidebar is below the header */
 
 }
+
 .sidebar li {
   cursor: pointer;
   padding-left: 5px;
-  padding-right: 5px;
+  padding-right: 0px;
   padding-top : 5px;
-  padding-bottom : 10px;
-  font-size: 14px;
-  /* background: linear-gradient(90deg, #b7b8ba 0%, #f1f3f4 100%); */
+  padding-bottom : 5px;
+  font-size: 13px;
+  margin: 0px;
+  /* background: linear-gradient(90deg, #374065 0%, #374065 100%); */
   margin-bottom: 10px;
   /* border-radius: 10px; */
-  border-bottom: 1px solid #aca8a8; /* Underline on hover */
+  /* border-bottom: 1px solid #a8a9ac;  */
+}
+.sidebar ul{  
+  width: 93%;
+    /* background: linear-gradient(90deg, #727eaf 0%, #48568f 100%); */
 
-  
 }
 .sidebar li:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  /* transform: translateY(-5px); */
+  height: 20%;
+  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); */
+  background: linear-gradient(90deg, #5a6277 0%, #5a6277 100%);
 
-}
+
+}  .sidebar-text{color: #f6f6f6;}
 
 .sidebar.show {
-  left: 0; /* Show the sidebar when the showSidebar state is true */
-
-
+  /* left: 0; Show the sidebar when the showSidebar state is true */
 
   
 }.modal-2{
-  padding-top: 80px;
+  padding-top: 3.5%;
   padding-left:330px;
+  height: 100%;
 }.modal-body{  padding:20px;
 }.right-align {
   display: flex;
@@ -350,11 +355,6 @@ body {
   list-style: none;
 }
 
-.nav-item {
-
-  
-}
-
 /* Responsive images */
 img {
   max-width: 100%;
@@ -376,15 +376,7 @@ select {
 }
 
 /* Responsive buttons */
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+
 
 /* Media query for adjusting button size on small screens */
 @media screen and (max-width: 576px) {
@@ -403,7 +395,7 @@ select {
   padding: 20px;
   border-radius: 8px;
   background-color: #fff;
-  margin-left: 250px;
+  margin-left: 200px;
 }
 
 .auth-form-group {
@@ -499,13 +491,13 @@ select {
 }
 
 
-.me-2{height: 80%;width: 100%; font-size: medium;}
 
 
 @media screen and (max-width: 576px) {
   .App-logo {
     height: 20vmin;
   }
+  .p{width: 100%;}
 
   .App-header {
     font-size: calc(8px + 2vmin);
@@ -527,7 +519,6 @@ select {
   
   }
   
-
   .nav-items {
     display: block; /* Display navigation items vertically on small screens */
     font-size: 14px; /* Smaller font size for mobile */
@@ -729,3 +720,8 @@ select {
     height: auto;
   }
 }
+
+.p{width:  60%;}
+
+
+

@@ -120,13 +120,12 @@ const UserRegister = () => {
 
   return (
     <div>
-      <div className="mt-2 d-flex aligns-items-center justify-content-center ms-2 me-2 mb-2">
+      <div className="register">
         <div
           className="card form-card border-color text-color custom-bg"
-          style={{ width: "50rem" }}
         >
-          <div className="card-header bg-color custom-bg-text text-center">
-            <h5 className="card-title">Register {user.roles}</h5>
+          <div className="card-header  custom-bg-text text-center">
+            <h5 className="text-color">Register {user.roles}</h5>
           </div>
           <div className="card-body">
             <form className="row g-3" onSubmit={saveUser}>

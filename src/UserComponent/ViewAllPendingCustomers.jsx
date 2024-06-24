@@ -93,15 +93,15 @@ const ViewAllPendingCustomers = () => {
           className="card  "
           style={{ height: "45rem" }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>All Pending Customers</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >All Pending Customers</h4>
           </div>
 
-           {/*For Showing  Massege   */}
+           {/* For Showing  Massege   */}
           <div className="card-body" style={{ overflowY: "auto" }}> 
             {allCustomer.length === 0 ? (
               <div className="text-center mt-3">
-                <h2>No pending customers found</h2>
+                <h4 className=" text-color " >No pending customers found</h4>
               </div>
             ) : (
               <div className="table-responsive mt-3">
@@ -131,13 +131,13 @@ const ViewAllPendingCustomers = () => {
                         <td><b>{customer.pincode}</b></td>
                         <td><b>{customer.status}</b></td>
                         <td>
-                          <button
+                          &nbsp;<button
                             onClick={() => rejectUser(customer.id)}
                             className="btn btn-sm bg-danger custom-bg-text ms-2"
                           >
                             Reject
                           </button>
-                          <button
+                          &nbsp;<button
                             onClick={() => approveUser(customer.id)}
                             className="btn btn-sm bg-success custom-bg-text ms-2"
                           >

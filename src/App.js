@@ -4,7 +4,7 @@ import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import AboutUs from "./page/AboutUs";
 import ContactUs from "./page/ContactUs";
-import logo from "./images/logo.png";
+import logo from "./images/Logo_bank.jpeg";
 import bg from "./images/new.png";
 import { Link } from "react-router-dom";
 import RoleNav from "./NavbarComponent/RoleNav";
@@ -113,28 +113,28 @@ function App() {
     <div>
 {showSidebar && <RoleNav toggleSidebar={toggleSidebar} />}    
   <div className="header">
-        <nav className="navbar navbar-expand-lg  text-color">
-          <div className="container-fluid text-color">
+        <nav className="navbar navbar-expand-lg  sidebar-text">
+          <div className="container-fluid sidebar-text">
             <img
               src={profileImg}
-              width="40"
-              height="40"
+              width="50"
+              height="50"
               className="d-inline-block nav-items "
               alt=""
             />
             <Link className="navbar-brand me-auto mb-2 mb-lg-0">
               <i>
                 {name ? (
-                  <h3 className="text-color ms-3 nav-items">{name}</h3>
+                  <h3 className="sidebar-text ms-3 nav-items">{name}</h3>
                 ) : (
-                  <p className="text-color ms-3 nav-items">Online Banking System</p>
+                  <p className="sidebar-text ms-3 nav-items">Online Banking System</p>
                 )}{" "}
               </i>
             </Link>
             <div className=" nav-items">
               <ProfileHeader  toggleSidebar={toggleSidebar2}/>
             </div> &nbsp;
-            <button
+            &nbsp;<button
               className="navbar-toggler  nav-items  " 
               type="button"
               data-bs-toggle="collapse"
@@ -144,7 +144,7 @@ function App() {
               aria-label="Toggle navigation"
               onClick={toggleSidebar} // Call toggleSidebar function when the button is clicked
             >
-              <span className="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon "></span>
             </button>
           </div>
         </nav>

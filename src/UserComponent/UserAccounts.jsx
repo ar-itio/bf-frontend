@@ -165,8 +165,8 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
               height: "45rem",
             }}
           >
-            <div className="card-header custom-bg-text text-center bg-color">
-              <h2>My Accounts Detail</h2>
+            <div className="card-header  text-center">
+            <h4 className=" text-color " >My Accounts Detail</h4>
             </div>
             <div
               className="card-body d-flex flex-column"
@@ -174,9 +174,9 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                 overflowY: "auto",
               }}
             >
-              <h3>Added User Accounts</h3>
-              <button
-                className="btn btn-primary"
+              <h4>Added User Accounts</h4>
+              <button  
+                className=" col btn-primary "  
                 onClick={() => setShowModal(true)}
               >
                 Add Account <FaPlus />
@@ -270,13 +270,13 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
         </div>
       </div>
       <div className="mb-2" style={{ display: showModal ? "block" : "none" }}>
-        <div className="mt-2 ">
-          <div
-            className="card form-card border-color custom-bg"
-            style={{ width: "25rem" }}
-          >
-            <div className="card-header bg-color text-center custom-bg-text">
-              <h2>Create New Accounts </h2>
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+        <div
+          className="card form-card border-color custom-bg"
+          style={{ width: "25rem" }}
+        >
+            <div className="card-header  text-center ">
+              <h4 className=" text-color " >Create New Accounts </h4>
             </div>
             <div
               className="card-body d-flex flex-column"
