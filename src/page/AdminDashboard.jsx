@@ -260,9 +260,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-container d">
-      <div className="dashboard-header-A">
-        <h2>Admin Dashboard</h2>
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h5>Dashboard</h5>
       </div>
       <div className="dashboard-summary">
         <Link
@@ -270,7 +270,7 @@ const Dashboard = () => {
           aria-current="page"
           to="/admin/all/bank/customers"
         >
-          <h3>All Users</h3>
+          <h3> Users</h3>
           <div className="summary-details">
             <div className="summary-detail">
               <h6>Active</h6>
@@ -304,7 +304,7 @@ const Dashboard = () => {
           aria-current="page"
           to="/admin/customer/transaction/success"
         >
-          <h3>All Transactions</h3>
+          <h3> Transactions</h3>
           <div className="summary-details">
             <div className="summary-detail">
               <h6>Success</h6>
@@ -338,7 +338,7 @@ const Dashboard = () => {
           aria-current="page"
           to="/Admin/ticket/detail/AdminTicket"
         >
-          <h3>All user Ticket</h3>
+          <h3> user Ticket</h3>
           <div className="summary-details">
             <div className="summary-detail">
               <h6>Active</h6>
@@ -369,16 +369,16 @@ const Dashboard = () => {
         </Link>
       </div>
       <div className="dashboard-summary">
-        <div className=" A ">
-          <h3>Added Currency</h3>
-          <CurrencyChart data={data.currencyAmounts} />
-        </div>
-        <div className="monthly-transactions-chart A">
+      <div className="monthly-transactions-chart currency-chart ">
           <h3>Monthly Credit and Debit Transactions</h3>
           <MonthlyTransactionsChart transactions={transactions} />
         </div>
+        <div className="currency-chart">
+          <h3>Added Currency</h3>
+          <CurrencyChart data={data.currencyAmounts} />
+        </div>
       </div>
-      <div className="dashboard-main">
+      {/* <div className="dashboard-main">
         <div className="active-accounts">
           <div className="user-cards">
             <h3 className="card-heder dashboard-header-A">Active Users:</h3>
@@ -396,7 +396,7 @@ const Dashboard = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
       <div>
         <CurrencyConverter
           transactions={transactions}
@@ -428,6 +428,32 @@ const CurrencyChart = ({ data }) => {
     // Check if all amounts are zero
     const allZero = data.every(({ amount }) => amount === 0);
 
+    const drawDoughnutSlice = (startAngle, endAngle, color) => {
+      const radius = Math.min(canvas.width, canvas.height) / 3;
+      const holeRadius = radius / 2;
+
+      ctx.beginPath();
+      ctx.fillStyle = color;
+      ctx.moveTo(canvas.width / 2, canvas.height / 2);
+      ctx.arc(
+        canvas.width / 2,
+        canvas.height / 2,
+        radius,
+        startAngle,
+        endAngle
+      );
+      ctx.arc(
+        canvas.width / 2,
+        canvas.height / 2,
+        holeRadius,
+        endAngle,
+        startAngle,
+        true
+      );
+      ctx.closePath();
+      ctx.fill();
+    };
+
     if (allZero) {
       // Equally divide the chart
       const sliceAngle = (2 * Math.PI) / data.length;
@@ -435,20 +461,7 @@ const CurrencyChart = ({ data }) => {
 
       data.forEach(({ currency }, index) => {
         const endAngle = startAngle + sliceAngle;
-
-        ctx.beginPath();
-        ctx.fillStyle = getColor(index);
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);
-        ctx.arc(
-          canvas.width / 2,
-          canvas.height / 2,
-          Math.min(canvas.width, canvas.height) / 3,
-          startAngle,
-          endAngle
-        );
-        ctx.closePath();
-        ctx.fill();
-
+        drawDoughnutSlice(startAngle, endAngle, getColor(index));
         startAngle = endAngle;
       });
     } else {
@@ -458,20 +471,7 @@ const CurrencyChart = ({ data }) => {
       data.forEach(({ amount, currency }, index) => {
         const sliceAngle = (amount / total) * 2 * Math.PI;
         const endAngle = startAngle + sliceAngle;
-
-        ctx.beginPath();
-        ctx.fillStyle = getColor(index);
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);
-        ctx.arc(
-          canvas.width / 2,
-          canvas.height / 2,
-          Math.min(canvas.width, canvas.height) / 3,
-          startAngle,
-          endAngle
-        );
-        ctx.closePath();
-        ctx.fill();
-
+        drawDoughnutSlice(startAngle, endAngle, getColor(index));
         startAngle = endAngle;
       });
     }
@@ -479,10 +479,10 @@ const CurrencyChart = ({ data }) => {
 
   const getColor = (index) => {
     const colors = [
-      "#f39c12",
-      "#36d1dc",
-      "#ff6f61",
+      "#1976D2",
       "#8e44ad",
+      "#36d1dc",
+      "#282f4b",
       "#3498db",
       "#2ecc71",
     ];
@@ -490,31 +490,17 @@ const CurrencyChart = ({ data }) => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ marginRight: "20px" }}>
-        {data.map(({ currency, amount }, index) => (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "10px",
-            }}
-          >
-            <div
-              style={{
-                width: "20px",
-                height: "20px",
-                backgroundColor: getColor(index),
-                marginRight: "10px",
-              }}
-            ></div>
-            <span>{`${currency}`}</span>
-          </div>
-        ))}
-      </div>
-      <canvas ref={canvasRef} width={300} height={350} />
+       <div className="">
+    <div className="dataContainer">
+      {data.map(({ currency, amount }, index) => (
+        <div key={index} className="dataItem">
+          <div className="colorBox" style={{ backgroundColor: getColor(index) }}></div>
+          <span>{`${currency}`}</span>
+        </div>
+      ))}
     </div>
+    <canvas ref={canvasRef} className="canvas"></canvas>
+  </div>
   );
 };
 
@@ -568,10 +554,10 @@ const CurrencyConverter = ({ transactions }) => {
               <th>Type</th>
               <th>Amount</th>
               <th>Status</th>
-              <th>Sender Name</th>
-              <th>Description</th>
-              <th>Transaction Ref ID</th>
-              <th>Fee</th>
+              <th className="hide-on-mobile" >Sender Name</th>
+              <th className="hide-on-mobile" >Description</th>
+              <th className="hide-on-mobile">Transaction Ref ID</th>
+              <th className="hide-on-mobile" >Fee</th>
               <th>Date</th>
               <th>Currency</th>
               <th>Account Number</th>
@@ -583,13 +569,13 @@ const CurrencyConverter = ({ transactions }) => {
                 <td>{transaction.type || "N/A"}</td>
                 <td>{transaction.amount || "N/A"}</td>
                 <td>{transaction.status || "N/A"}</td>
-                <td>{transaction.senderName || "N/A"}</td>
-                <td>{transaction.description || "N/A"}</td>
-                <td>{transaction.transactionRefId || "N/A"}</td>
-                <td>{transaction.fee || "N/A"}</td>
+                <td className="hide-on-mobile">{transaction.senderName || "N/A"}</td>
+                <td className="hide-on-mobile">{transaction.description || "N/A"}</td>
+                <td className="hide-on-mobile" >{transaction.transactionRefId || "N/A"}</td>
+                <td className="hide-on-mobile">{transaction.fee || "N/A"}</td>
                 <td>{transaction.date || "N/A"}</td>
                 <td>{transaction.currency || "N/A"}</td>
-                <td>{transaction.accountNumber || "N/A"}</td>
+                <td >{transaction.accountNumber || "N/A"}</td>
               </tr>
             ))}
           </tbody>
@@ -628,7 +614,7 @@ const CurrencyConverter = ({ transactions }) => {
               </option>
             ))}
           </select>
-          <button onClick={handleConvert} className="convert-button">
+          &nbsp;<button onClick={handleConvert} className="convert-button">
             Convert
           </button>
         </div>
@@ -720,11 +706,11 @@ const MonthlyTransactionsChart = ({ transactions }) => {
         const yDebit = chartHeight + 50 - debitData[i] * scale;
 
         // Draw credit bar
-        ctx.fillStyle = "rgba(54, 162, 235, 0.6)";
+        ctx.fillStyle = "#1976D2";
         ctx.fillRect(xCredit, yCredit, barWidth, creditData[i] * scale);
 
         // Draw debit bar
-        ctx.fillStyle = "rgba(255, 99, 132, 0.6)";
+        ctx.fillStyle = "#36d1dc";
         ctx.fillRect(xDebit, yDebit, barWidth, debitData[i] * scale);
 
         // Draw labels
@@ -744,12 +730,12 @@ const MonthlyTransactionsChart = ({ transactions }) => {
       });
 
       // Draw legend
-      ctx.fillStyle = "rgba(54, 162, 235, 0.6)";
+      ctx.fillStyle = "#1976D2";
       ctx.fillRect(chartWidth - 100, 20, 20, 20);
       ctx.fillStyle = "black";
       ctx.fillText("Credit", chartWidth - 60, 35);
 
-      ctx.fillStyle = "rgba(255, 99, 132, 0.6)";
+      ctx.fillStyle = "#36d1dc";
       ctx.fillRect(chartWidth - 100, 50, 20, 20);
       ctx.fillStyle = "black";
       ctx.fillText("Debit", chartWidth - 60, 65);

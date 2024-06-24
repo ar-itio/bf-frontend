@@ -180,7 +180,7 @@ const Dashboard = () => {
     fetchData();
     fetchtransactions();
     retrieveAllBeneficiary();
-  },[] );
+  }, []);
 
   const handleAccountClick = async (account) => {
     setSelectedAccount(account);
@@ -196,14 +196,83 @@ const Dashboard = () => {
   };
 
   const handleBackClick = () => {
-    setSelectedAccount(null);
+    setSelectedAccount("");
     setAccountTransactions([]);
   };
 
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h2>User Dashboard</h2>
+        <h5>Dashboard</h5>
+      </div>
+      
+      <div className="dashboard-content">
+            <h6 className="accounts">accounts</h6>
+            <h6 className="summary">Summary</h6>
+        </div>
+      <div className="account-container">
+
+  <div className="account-cards">
+    {data.activeAccounts.slice(0, 4).map((account) => (
+      <div
+        key={account.id}
+        className="account-card"
+        onClick={() => handleAccountClick(account)}
+      >
+        <h6 className="account-currency">{account.currency}</h6>
+        <p className="account-number">{account.accountNumber}</p>
+        <p className="account-balance">{account.accountBalance}</p>
+        <div className="chip"></div>
+      </div>
+    ))}
+  </div>
+  <div className="account-summary">
+    <div className="strip">
+      Total Balance:   {data.activeAccounts.reduce((sum, account) => sum + account.accountBalance, 0)}
+    </div>
+    <div className="strip">
+      Total Accounts:    4
+    </div>
+  </div>
+</div>
+
+      <div className="dashboard-main">
+        <div className="currency-chart">
+          <h3>Currency Amounts</h3>
+          <CurrencyChart data={data.currencyAmounts} />
+        </div>
+        <div className="transaction-list">
+          {/* <h3 className="transaction-header">
+    Transactions for Account: {transactions[0].accountNumber}
+  </h3> */}
+          <div className="transaction-table">
+            <div className="transaction-row transaction-header-row">
+              <span className="transaction-header-item">ID</span>
+              <span className="transaction-header-item">Date</span>
+              <span className="transaction-header-item">Type</span>
+              <span className="transaction-header-item">Amount</span>
+              <span className="transaction-header-item">Status</span>
+              <span className="transaction-header-item">View</span>
+            </div>
+            {accountTransactions.map((transaction, index) => (
+              <div
+                key={index}
+                className={`transaction-row transaction-status-${transaction.status.toLowerCase()} transaction-type-${transaction.type.toLowerCase()}`}
+              >
+                <span className="transaction-id">{transaction.id}</span>
+                <span className="transaction-date">
+                  {new Date(transaction.date).toLocaleDateString()}
+                </span>
+                <span className="transaction-type">{transaction.type}</span>
+                <span className="transaction-amount">{transaction.amount}</span>
+                <span className="transaction-status">{transaction.status}</span>
+                <span className="transaction-view">
+                  &nbsp;<button>View</button>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="dashboard-summary">
         <Link
@@ -211,7 +280,7 @@ const Dashboard = () => {
           aria-current="page"
           to="/customer/UserAccounts"
         >
-          <h3>Total Accounts</h3>
+          <h3>Accounts</h3>
           <div className="summary-details">
             <div className="summary-detail">
               <h6>Active</h6>
@@ -245,7 +314,7 @@ const Dashboard = () => {
           aria-current="page"
           to="/customer/transaction/all"
         >
-          <h3>All Transactions</h3>
+          <h3>Transactions</h3>
           <div className="summary-details">
             <div className="summary-detail">
               <h6>Success</h6>
@@ -279,7 +348,7 @@ const Dashboard = () => {
           aria-current="page"
           to="/customer/beneficiary/view"
         >
-          <h3>All Beneficiary</h3>
+          <h3>Beneficiary</h3>
           <div className="summary-details">
             <div className="summary-detail">
               <h6>Active</h6>
@@ -310,63 +379,15 @@ const Dashboard = () => {
         </Link>
       </div>
 
-      <div className="dashboard-main">
-        <div className="currency-chart">
-          <h3>Currency Amounts</h3>
-          <CurrencyChart data={data.currencyAmounts} />
-        </div>
-
-        <div className="active-accounts">
-          {selectedAccount ? (
-            <div>
-              <button className="back-button" onClick={handleBackClick}>
-                &larr; Back to Accounts
-              </button>
-              <h3 className="transaction-date">
-                Transactions for Account: {selectedAccount.accountNumber}
-              </h3>
-              <div className="transaction-list">
-                {accountTransactions.map((transaction, index) => (
-                  <div
-                    key={index}
-                    className={`transaction-item transaction-status-${transaction.status.toLowerCase()} transaction-type-${transaction.type.toLowerCase()}`}
-                  >
-                    <span className="transaction-date">
-                      {new Date(transaction.date).toLocaleDateString()}
-                    </span>
-                    <span className="transaction-date">{transaction.type}</span>
-                    <span className="transaction-amount">
-                      {transaction.amount}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="account-cards">
-              {data.activeAccounts.map((account, index) => (
-                <div
-                  key={account.id}
-                  className="account-card"
-                  onClick={() => handleAccountClick(account)}
-                >
-                  <p>Account Number: {account.accountNumber}</p>
-                  <p>Balance: {account.accountBalance}</p>
-                  <p>Currency: {account.currency}</p>/
-                  <div className="chip"></div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
       <div>
-        <CurrencyConverter transactions={transactions} setTransactions={setTransactions} />
+        <CurrencyConverter
+          transactions={transactions}
+          setTransactions={setTransactions}
+        />
       </div>
     </div>
   );
 };
-
 const CurrencyChart = ({ data }) => {
   const canvasRef = useRef(null);
 
@@ -388,6 +409,32 @@ const CurrencyChart = ({ data }) => {
     // Check if all amounts are zero
     const allZero = data.every(({ amount }) => amount === 0);
 
+    const drawDoughnutSlice = (startAngle, endAngle, color) => {
+      const radius = Math.min(canvas.width, canvas.height) / 3;
+      const holeRadius = radius / 2;
+
+      ctx.beginPath();
+      ctx.fillStyle = color;
+      ctx.moveTo(canvas.width / 2, canvas.height / 2);
+      ctx.arc(
+        canvas.width / 2,
+        canvas.height / 2,
+        radius,
+        startAngle,
+        endAngle
+      );
+      ctx.arc(
+        canvas.width / 2,
+        canvas.height / 2,
+        holeRadius,
+        endAngle,
+        startAngle,
+        true
+      );
+      ctx.closePath();
+      ctx.fill();
+    };
+
     if (allZero) {
       // Equally divide the chart
       const sliceAngle = (2 * Math.PI) / data.length;
@@ -395,20 +442,7 @@ const CurrencyChart = ({ data }) => {
 
       data.forEach(({ currency }, index) => {
         const endAngle = startAngle + sliceAngle;
-
-        ctx.beginPath();
-        ctx.fillStyle = getColor(index);
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);
-        ctx.arc(
-          canvas.width / 2,
-          canvas.height / 2,
-          Math.min(canvas.width, canvas.height) / 3,
-          startAngle,
-          endAngle
-        );
-        ctx.closePath();
-        ctx.fill();
-
+        drawDoughnutSlice(startAngle, endAngle, getColor(index));
         startAngle = endAngle;
       });
     } else {
@@ -418,20 +452,7 @@ const CurrencyChart = ({ data }) => {
       data.forEach(({ amount, currency }, index) => {
         const sliceAngle = (amount / total) * 2 * Math.PI;
         const endAngle = startAngle + sliceAngle;
-
-        ctx.beginPath();
-        ctx.fillStyle = getColor(index);
-        ctx.moveTo(canvas.width / 2, canvas.height / 2);
-        ctx.arc(
-          canvas.width / 2,
-          canvas.height / 2,
-          Math.min(canvas.width, canvas.height) / 3,
-          startAngle,
-          endAngle
-        );
-        ctx.closePath();
-        ctx.fill();
-
+        drawDoughnutSlice(startAngle, endAngle, getColor(index));
         startAngle = endAngle;
       });
     }
@@ -439,9 +460,9 @@ const CurrencyChart = ({ data }) => {
 
   const getColor = (index) => {
     const colors = [
-      "#f39c12",
+      "#1976D2",
       "#36d1dc",
-      "#ff6f61",
+      "#282f4b",
       "#8e44ad",
       "#3498db",
       "#2ecc71",
@@ -450,22 +471,22 @@ const CurrencyChart = ({ data }) => {
   };
 
   return (
-    <div className="container">
-    <div className="dataContainer">
-      {data.map(({ currency, amount }, index) => (
-        <div key={index} className="dataItem">
-          <div className="colorBox" style={{ backgroundColor: getColor(index) }}></div>
-          <span>{`${currency}: ${amount}`}</span>
-        </div>
-      ))}
+    <div className="">
+      <div className="dataContainer">
+        {data.map(({ currency, amount }, index) => (
+          <div key={index} className="dataItem">
+            <div className="colorBox" style={{ backgroundColor: getColor(index) }}
+            ></div>
+            <span>{`${currency}:  ${amount}`}</span>
+          </div>
+        ))}
+      </div>
+      <canvas ref={canvasRef} className="canvas"></canvas>
     </div>
-    <canvas ref={canvasRef} className="canvas"></canvas>
-  </div>
-
   );
 };
 
-const CurrencyConverter = ({transactions}) => {
+const CurrencyConverter = ({ transactions }) => {
   const [amount, setAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("EUR");
@@ -510,38 +531,36 @@ const CurrencyConverter = ({transactions}) => {
       <div className="transaction-form">
         <h3>Letest Transaction</h3>
         <table className="transaction-table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Amount</th>
-        <th>Status</th>
-        <th>Sender Name</th>
-        <th>Description</th>
-        <th>Transaction Ref ID</th>
-        <th>Fee</th>
-        <th>Date</th>
-        <th>Currency</th>
-        <th>Account Number</th>
-      </tr>
-    </thead>
-    <tbody>
-      {transactions.slice(0, 10).map((transaction, index) => (
-        <tr key={index} className="">
-          <td>{transaction.type|| 'N/A'}</td>
-          <td>{transaction.amount || 'N/A'}</td>
-          <td>{transaction.status || 'N/A'}</td>
-          <td>{transaction.senderName || 'N/A'}</td>
-          <td>{transaction.description || 'N/A'}</td>
-          <td>{transaction.transactionRefId || 'N/A'}</td>
-          <td>{transaction.fee || 'N/A'}</td>
-          <td>{transaction.date || 'N/A'}</td>
-          <td>{transaction.currency || 'N/A'}</td>
-          <td>{transaction.accountNumber || 'N/A'}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th className="hide-on-mobile" >Description</th>
+              <th>Transaction Ref ID</th>
+              <th>Fee</th>
+              <th >Date</th>
+              <th className="hide-on-mobile" >Currency</th>
+              <th>Account Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.slice(0, 10).map((transaction, index) => (
+              <tr key={index} className="">
+                <td>{transaction.type || "N/A"}</td>
+                <td>{transaction.amount || "N/A"}</td>
+                <td>{transaction.status || "N/A"}</td>
+                <td className="hide-on-mobile">{transaction.description || "N/A"}</td>
+                <td>{transaction.transactionRefId || "N/A"}</td>
+                <td>{transaction.fee || "N/A"}</td>
+                <td>{transaction.date || "N/A"}</td>
+                <td className="hide-on-mobile" >{transaction.currency || "N/A"}</td>
+                <td>{transaction.accountNumber || "N/A"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="currency-converter">
         <h3>Currency Converter</h3>
         <div className="converter-form">
@@ -575,7 +594,7 @@ const CurrencyConverter = ({transactions}) => {
               </option>
             ))}
           </select>
-          <button onClick={handleConvert} className="convert-button">
+          &nbsp;<button onClick={handleConvert} className="convert-button">
             Convert
           </button>
         </div>

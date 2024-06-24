@@ -1,5 +1,5 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f7f6;
   margin: 0;
   padding: 0;
@@ -8,9 +8,9 @@ body {
 
 .dashboard-container {
   padding-top: 90px;
-  padding-left: 260px;
+  padding-left: 220px;
   padding-right: 10px;
-  height: 2000px;
+  height: 100%;
   /* max-width: 1200px; */
   /* margin: 0 auto; */
   background-color: #ffffff;
@@ -18,7 +18,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.dashboard-header {
+/* .dashboard-header {
   position: relative;
   background: linear-gradient(135deg, #5e7f9a, #901616);
   padding: 20px 30px;
@@ -29,12 +29,29 @@ body {
 
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Ensure the pseudo-elements stay within the bounds */
+  overflow: hidden; 
   transition: transform 0.2s;
+} */
+.dashboard-header h5 {
+  color: #256ebc;
+  font-family: "Arial", sans-serif; /* You can change this to any preferred font */
+  border-bottom: 2px solid #6b80df; /* Adjust the color and thickness of the underline */
+  padding-bottom: 5px; /* Space between text and underline */
+  font-size: 16px; /* Adjust the font size */
+  font-weight: bolder; /* Makes the font bold */
 }
-
-
-.dashboard-header::before {
+.summary-detail h6 {
+  font-family: "Roboto", sans-serif; /* Use a good font */
+  font-size: 16px; /* Adjust font size */
+  font-weight: 400; /* Normal weight */
+  margin: 0 0 5px;
+}
+.summary-detail p {
+  font-family: "Roboto", sans-serif; /* Use a good font */
+  font-size: 14px; /* Adjust font size */
+  margin: 0;
+}
+/* .dashboard-header::before {
   content: "";
   position: absolute;
   top: 0;
@@ -42,8 +59,8 @@ body {
   width: 180%;
   height: 400%;
   background: rgba(255, 255, 255, 0.1);
-  pointer-events: none; /* Ensure the textures don't interfere with interactions */
-  z-index: 1; /* Ensure they stay on top of the gradient */
+  pointer-events: none; 
+  z-index: 1;
   transform: rotate(45deg);
   transform-origin: center;
 }
@@ -55,8 +72,8 @@ body {
   width: 20%;
   height: 400%;
   background: rgba(255, 255, 255, 0.1);
-  pointer-events: none; /* Ensure the textures don't interfere with interactions */
-  z-index: 1; /* Ensure they stay on top of the gradient */
+  pointer-events: none; 
+  z-index: 1; 
   transform: rotate(45deg);
   transform-origin: center;
 }
@@ -67,9 +84,9 @@ body {
 }
 .dashboard-header::after {
   animation: textureAnimation2 10s linear infinite;
-}
+} */
 
-@keyframes textureAnimation {
+/* @keyframes textureAnimation {
   0% {
     transform: rotate(45deg) translate(0, 0);
   }
@@ -92,28 +109,31 @@ body {
   100% {
     transform: rotate(-45deg) translate(0, 0);
   }
-}
+} */
 
 /* Ensure the content stays on top of the pseudo-elements */
-.dashboard-header h2 {
+/* .dashboard-header h2 {
   position: relative;
   z-index: 2;
-}
+} */
 
-
-.dashboard-header:hover {
+/* .dashboard-header:hover {
   transform: scale(1.02);
-}
+} */
 
 .dashboard-summary {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .summary-item {
-  background-color: #fff;
+  text-decoration: none; /* Remove underline from links */
+
+  background-color: #e2eff4;
   padding: 20px;
+  font-family: "Arial", sans-serif;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex: 1;
@@ -123,22 +143,22 @@ body {
 }
 
 .summary-item h3 {
-  color: #2c3e50;
+  color: #40529b;
   margin-bottom: 15px;
   font-size: 1.8rem;
 }
 
-.summary-item p {
+/* .summary-item p {
   font-size: 1.5rem;
   color: #16a085;
   font-weight: bold;
   margin: 0;
-}
+} */
 
-.summary-item:hover {
+/* .summary-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .summary-details {
   display: flex;
@@ -146,28 +166,29 @@ body {
   flex-wrap: wrap;
 }
 
-.summary-detail {
+/* .summary-detail {
   flex: 1;
   margin: 10px;
   text-align: left;
   height: 80px;
-}
+} */
 
 .summary-detail h6 {
-  color: #7f8c8d;
+  color: #041f21;
   margin: 0;
   font-size: 0.9rem;
 }
 
 .summary-detail p {
   font-size: 1.2rem;
-  color: #2c3e50;
+  color: #5f6f7f;
   font-weight: bold;
   margin: 5px 0 0 0;
 }
 
-.currency-chart, .dashboard-sections {
-  background-color: #fff;
+.currency-chart,
+.dashboard-sections {
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -180,9 +201,7 @@ body {
 
 /* Additional Styling for Advanced Visuals */
 
-
-
-.summary-item {
+/* .summary-item {
   border-left: 5px solid #36d1dc;
   background: linear-gradient(90deg, #ebeef1 10%, #36d1dc 150%);
 }
@@ -197,116 +216,127 @@ body {
   border-left: 5px solid #ff6f61;
   background: linear-gradient(90deg, #ebeef1 10%, #ff6f61 150%);
 
-}
+} */
 
 .summary-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .currency-chart {
-  background: linear-gradient(90deg, #f0eaef 20%, #dd9ad2 150%);
-  border-left: 5px solid #c181b6;
+  background: linear-gradient(90deg, #fafcfd 20%, #e2eff4 150%);
+  border-left: 5px solid #a3e1fa;
   /* border-top: 5px solid #c181b6;
   border-right: 5px solid #c181b6; */
-  margin: 15px;
-  margin-top: 30px;
-  width: 600px;
+  margin: 10px;
+  margin-top: 15px;
+  width: 80%;
+  height: 100%;
 }
 .currency-chart:hover {
-  transform: translateY(-8px);
+  transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.currency-chart h3 {
+  color: #40529b;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+.dataItem{ 
+  font-size: 16px;
+  margin-bottom: 0px;
+  text-align:left;
 }
 .dashboard-sections .dashboard-section {
   border-left: 5px solid #5b86e5;
 }
-
 
 .dashboard-main {
   display: flex;
   justify-content: space-between;
 }
 
-.currency-chart {
+.currency-chart.A {
   flex: 1;
 }
 
-
-
-
-
-
 /* for Account Cards  */
 
-
-
-.active-accounts {
-  flex: 1;
-  margin-left: 20px;
-  margin-top: 25px;
+.account-container {
+  display: flex;
+  width: 100%;
 }
 
 .account-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 20px; /* Adjust spacing between cards */
+  width: 100%; /* Adjust width as needed */
+  margin-bottom: 1%;
 }
 
 .account-card {
-  background: linear-gradient(135deg, #4b79a1, #283e51);
-  color: white;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative;
-  overflow: hidden;
-  width: calc(50% - 10px); /* Two cards per row */
-  height: 150px;
-}
-
-.account-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.account-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.2);
-  height: 100%;
-  width: 100%;
-  transform: rotate(45deg);
-  transform-origin: top right;
-  pointer-events: none;
-}
-
-.account-card .account-details {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  background-color: #e9f8fe;
+  align-items: center;
+  border: 1px solid #e2eff4; /* Adjust as needed */
+  padding: 30px; /* Adjust as needed */
+  border-radius: 8px; /* Optional */
+  width: 21%; /* Adjust as needed */
+  height: 150px; /* Adjust as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for shadow effect */
+}
+.account-currency {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
 }
 
-.account-card .account-number {
-  font-size: 1.2em;
-  font-weight: bold;
+.account-number {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  margin: 0;
+  font-size: 14px;
 }
 
-.account-card .account-balance {
-  font-size: 1.4em;
-  margin: 5px 0;
+.account-balance {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-align: center;
 }
 
-.account-card .account-currency {
-  font-size: 1.1em;
+.dashboard-content h6 {
+  margin: 0;
+  padding: 10px;
+  color: rgba(138, 164, 194, 0.8); /* Blurred gray background */
+  font-size: 16px;
+  padding-right: 25%;
 }
-
-
+.dashboard-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.strip {
+  width: 400px;
+  height: 40%;
+  padding: 1%;
+  background-color: #d4d8f8; /* Adjust color as needed */
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for shadow effect */
+}
 /* .account-card .bank-logo {
   position: absolute;
   top: 10px;
@@ -328,80 +358,85 @@ body {
 } 
  */
 
-
-/* Back Button Style */
-.back-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-bottom: 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s;
-}
-
-.back-button:hover {
-  background-color: #0056b3;
-}
-
 /* Transaction List Styles */
 .transaction-list {
+  width: 50%;
+  /* max-width: 1000px; */
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background: linear-gradient(90deg, #eaf3fb 20%, #eaf3fb 150%);
+  width: 100%;
   padding: 20px;
   /* border: 1px solid #f46b6b; */
-  border-radius: 10px;
-  background-color: #fff;
-  background: linear-gradient(90deg, #d1e9cb 20%, #f1f0f1 150%);
-  border-left: 5px solid #2a721c;
+  margin: 10px;
+  border-radius: 15px;
 }
 
-.transaction-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  transition: background-color 0.3s;
+.transaction-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+  text-align: left;
 }
 
-.transaction-item:last-child {
-  border-bottom: none;
+.transaction-table {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
 }
 
-.transaction-date {
+.transaction-row {
+  display: table-row;
+}
+
+.transaction-header-row {
   font-weight: bold;
-  color: #555;
 }
 
-.transaction-amount {
-  font-weight: bold;
-}
-
-/* Status-based styles */
-.transaction-status-success {
-  color: #28a745; /* Green for success */
-}
-
-.transaction-status-pending {
-  color: #ffc107; /* Yellow for pending */
-}
-
-.transaction-status-rejected,
-.transaction-status-cancelled {
-  color: #dc3545; /* Red for rejected and cancelled */
-}
-
-.transaction-type-transfer {
-  color: #17a2b8; /* Blue for transfers */
-}
-
-.transaction-type-add {
-  color: #28a745; /* Green for adding amount */
+.transaction-header-item,
+.transaction-id,
+.transaction-date,
+.transaction-type,
+.transaction-amount,
+.transaction-status,
+.transaction-view {
+  display: table-cell;
+  padding: 8px;
+  text-align: left;
 }
 
 
+.transaction-header-item {
+  border-bottom: 1px solid #ddd;
+}
 
+.transaction-id,
+.transaction-date,
+.transaction-type,
+.transaction-amount,
+.transaction-status,
+.transaction-view {
+  border-bottom: 1px solid #ddd;
+}
+
+.transaction-row:hover {
+  background-color: #e0e0e0;
+}
+
+.transaction-view button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.transaction-view button:hover {
+  background-color: #0056b3;
+}
 
 /* CurrencyConverter.css */
 .currency-converter-container {
@@ -411,31 +446,31 @@ body {
   margin-top: 20px;
 }
 .currency-converter {
-  background: linear-gradient(135deg, #6e4895 0%, #edbded 100%);
+  background: linear-gradient(135deg, #c2c1c4 0%, #6a98dd 100%);
   border: 1px solid #ccc;
   border-radius: 12px;
-  padding: 25px;
+  padding: 2%;
   margin-top: 30px;
   margin-bottom: 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  
+
   width: 450px;
-  height: 500px;
+  height: 400px;
   margin-left: auto;
   margin-right: auto;
   transition: box-shadow 0.3s;
 }
 
 .currency-converter:hover {
-  transform: translateY(-15px);
+  transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .currency-converter h3 {
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #283e51;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 24px;
 }
 
@@ -454,7 +489,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 18px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   box-sizing: border-box;
   transition: border 0.4s;
 }
@@ -473,7 +508,7 @@ body {
   margin: 15px 0;
   font-size: 18px;
   color: #333;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .convert-button {
@@ -483,7 +518,7 @@ body {
   border-radius: 8px;
   padding: 12px 25px;
   font-size: 18px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
 }
@@ -498,24 +533,18 @@ body {
   font-size: 20px;
   color: #333;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
-
-
-
-
-
-
-
 
 /* exchange-rates */
 .transaction-form {
   margin: 20px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #bfc4ca;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #e5eafa;
   font-family: Arial, sans-serif;
+  width: 100%px;
 }
 
 .transaction-form h3 {
@@ -525,7 +554,7 @@ body {
 }
 
 .transaction-table {
-  width: 200px;
+  width: 100%px;
   border-collapse: collapse;
 }
 
@@ -544,10 +573,6 @@ body {
 .transaction-table th {
   background-color: #007bff;
   color: white;
-}
-
-.transaction-table tr:nth-child(even) {
-  background-color: #f2f2f2;
 }
 
 .transaction-table tr:hover {
@@ -572,12 +597,7 @@ body {
   border-bottom: 2px solid #007bff;
 }
 
-
-
-
 /*  ADMIN Deshboard Designs...........*/
-
-
 
 .user-cards {
   display: flex;
@@ -639,24 +659,18 @@ body {
   font-size: 1.1em;
 }
 
-
-
-
-
 .transaction-form-A {
-  background: linear-gradient(135deg, #bdbde7, #86c4fe);
+  background: linear-gradient(180deg, #cde3f4, #cde3f4);
   margin: 20px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
   width: 100%;
-
 }
 
 .transaction-table-A {
-  border: 5px solid #6161b3;
+  border: 5px solid #8aa4bb;
   width: 100%;
   border-collapse: collapse;
 }
@@ -673,11 +687,6 @@ body {
   text-align: left;
 }
 
-
-.transaction-table-A tr:nth-child(even) {
-  /* background-color: #f2f2f2; */
-}
-
 .transaction-table-A tr:hover {
   background-color: #f1f1f1;
 }
@@ -687,18 +696,14 @@ body {
 }
 
 .transaction-table-A th {
-  background-color: #6161b3;
+  background-color: #8aa4bb;
   color: white;
   text-transform: uppercase;
 }
 
-.transaction-table-A tr:first-child {
-  border-top: 2px solid #71718d;
-}
 
-.transaction-table-A tr:last-child {
-  border-bottom: 2px solid #007bff;
-}
+
+
 
 .dashboard-header-A {
   position: relative;
@@ -741,23 +746,22 @@ body {
   transform-origin: center;
 }
 
-
 .dashboard-header-A::before {
   animation: textureAnimation 10s linear infinite;
 }
 .dashboard-header-A::after {
   animation: textureAnimation2 10s linear infinite;
 }
-.card-heder{
+.card-heder {
   background: linear-gradient(135deg, #497194, #153a5b);
   margin: 10px;
   padding: 10px;
   width: calc(1000%); /* Two cards per row */
- }
+}
 
- .A {
+.A {
   background: linear-gradient(90deg, #f0eaef 20%, #dd9ad2 150%);
-  border-left: 5px solid #c181b6;
+  border-left: 5px solid #81a1c1;
   /* border-top: 5px solid #c181b6;
   border-right: 5px solid #c181b6; */
   margin: 15px;
@@ -766,18 +770,14 @@ body {
   height: 400px;
 }
 
-
 .A:nth-child(1) {
   border-left: 5px solid #428865;
   background: linear-gradient(90deg, #ebeef1 10%, #428865 150%);
-
 }
 .A:nth-child(2) {
   border-left: 5px solid #c6ce32;
   background: linear-gradient(90deg, #f0eded 10%, #ecf63b 150%);
-
 }
-
 
 .bank-accounts-table {
   width: 100%;
@@ -794,14 +794,11 @@ body {
 
 .bank-accounts-table th {
   background-color: #562040;
-
 }
-
 
 .bank-accounts-table tbody tr:hover {
   background-color: #f1f1f1;
-  color: #333;  /* Header text color */
-
+  color: #333; /* Header text color */
 }
 /* CSS for MonthlyTransactionsChart component */
 .monthly-transactions-chart {
@@ -814,11 +811,10 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   font-size: 18px;
-
 }
 
 /* CSS for the text labels */
-.monthly-transactions-chart .credit-label, 
+.monthly-transactions-chart .credit-label,
 .monthly-transactions-chart .debit-label {
   font-size: 18px;
   font-weight: bold;
@@ -828,9 +824,10 @@ body {
 
 /* CSS for the graph */
 .monthly-transactions-chart canvas {
-
   width: 100%;
-  height: calc(100% - 20px); /* Adjusted height to leave space for text labels */
+  height: calc(
+    100% - 20px
+  ); /* Adjusted height to leave space for text labels */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -845,18 +842,13 @@ body {
 .monthly-transactions-chart:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-.d{  height: 2200px;
+.d {
+  height: 2200px;
 }
-
-
-
-
-
-
 
 /* Dashboard Styles for Small Screens */
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 600px) {
   /* Adjustments for body */
   body {
     font-size: 14px; /* Adjusted font size for smaller screens */
@@ -864,9 +856,8 @@ body {
 
   /* Adjustments for dashboard container */
   .dashboard-container {
-    padding-top: 45px; /* Adjusted padding top for smaller screens */
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
+    padding-top: 70px;
     height: auto; /* Adjusted height for smaller screens */
     background-color: #ffffff;
     border-radius: 10px;
@@ -881,8 +872,8 @@ body {
   .summary-detail h6,
   .summary-detail p,
   .currency-chart,
+  .A,
   .dashboard-sections,
-  .currency-chart,
   .active-accounts,
   .account-card,
   .account-card .account-details,
@@ -908,22 +899,19 @@ body {
   .transaction-table td,
   .transaction-table-A th,
   .transaction-table-A td,
-  .monthly-transactions-chart .credit-label, 
+  .monthly-transactions-chart .credit-label,
   .monthly-transactions-chart .debit-label {
     font-size: 14px; /* Adjusted font size for smaller screens */
+    font-family: Arial, sans-serif;
   }
 
   /* Additional adjustments for specific elements */
-  .currency-chart {
+  .currency-chart,
+  .A {
     width: 100%; /* Adjusted width for smaller screens */
     height: auto; /* Adjusted height for smaller screens */
   }
 
-  .transaction-list {
-    border-radius: 10px; /* Adjusted border radius for smaller screens */
-    background: linear-gradient(90deg, #d1e9cb 20%, #f1f0f1 150%);
-    border-left: 5px solid #2a721c;
-  }
 
   .monthly-transactions-chart {
     margin-top: 20px;
@@ -957,9 +945,13 @@ body {
     padding: 10px; /* Adjusted padding for user cards */
     width: 45%; /* Adjusted width for user cards */
   }
-
+  .transaction-table th,
+  .transaction-table td,
+  .transaction-table-A th,
+  .transaction-table-A td,
   .transaction-table {
     width: 100%; /* Adjusted width for transaction tables */
+    font-size: 12px;
   }
 
   .transaction-table th,
@@ -977,13 +969,7 @@ body {
   }
 }
 
-
-
-
-
-
 /* Mobile First Styles */
-
 
 /* Mobile Styles */
 @media screen and (max-width: 576px) {
@@ -991,11 +977,6 @@ body {
   .summary-detail,
   .user-card {
     flex: 1 1 auto;
-  }
-
-  .dashboard-container {
-    padding: 10px;
-    padding-top: 60px;
   }
 
   .dashboard-header-A,
@@ -1040,7 +1021,8 @@ body {
     gap: 20px;
   }
 
-  .user-cards, .card-header {
+  .user-cards,
+  .card-header {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -1058,12 +1040,12 @@ body {
     margin: 5px 0;
   }
 
-  .chip {
+  /* .chip {
     width: 20px;
     height: 20px;
     background-color: green;
     border-radius: 50%;
-  }
+  } */
 
   .currency-converter-container {
     display: flex;
@@ -1080,7 +1062,7 @@ body {
     padding: 5px;
     border-radius: 5px;
     font-size: 14px; /* Adjusted font size for smaller screens */
-    width: 100%;
+    width: 104%;
   }
 
   .transaction-table {
@@ -1115,19 +1097,90 @@ body {
     text-align: center;
   }
 
-  .currency-chart {
+  .currency-chart,
+  .A {
     margin-top: 20px;
     width: 100%;
   }
+  .input,
+  .form-control-text {
+    font-size: 14px;
+  }
+  .strip {
+    width: 200%;
+    padding: 0%;
+    margin-top: 20px;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for shadow effect */
+    font-size: 18px;
+  }
+  .dashboard-content h6 {
+    display: none;
+    margin: 0;
+    padding: 10px;
+    color: rgba(138, 164, 194, 0.8); /* Blurred gray background */
+    font-size: 16px;
+    padding-right: 0%;
+  }.account-container,
+  .dashboard-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: flex-start; /* Align items to the start */
+    margin-top: 0%;
+    width: 100%;
 }
+  .transaction-row {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+
+
+  .transaction-header-item,
+  .transaction-id,
+  .transaction-date,
+  .transaction-type,
+  .transaction-amount,
+  .transaction-status,
+  .transaction-view {
+    align-items: left;
+    padding-left:1%;
+    width: 100%;
+    
+  }
+  .transaction-header {
+    font-size: 14px;  }
+  .transaction-view {
+    /* text-align: center; */
+    width: 100%;
+  }
+
+  .transaction-view button {
+    width: 100%;
+  }
+  .dataItem{ 
+    font-size: 13px;
+    margin-bottom: 0px;
+    text-align:left;
+  }
+  .hide-on-mobile {
+    display: none;
+  }
+  .transaction-table-A{
+    width: 10%;
+  }
+
+}
+
 .dashboard-header,
 .summary-detail h6,
 .summary-detail p,
 .currency-chart,
+.A,
 .dashboard-sections,
-.currency-chart,
 .active-accounts,
-
 .back-button,
 .transaction-item,
 .transaction-date,
@@ -1147,7 +1200,7 @@ body {
 .transaction-table td,
 .transaction-table-A th,
 .transaction-table-A td,
-.monthly-transactions-chart .credit-label, 
+.monthly-transactions-chart .credit-label,
 .monthly-transactions-chart .debit-label {
   font-size: 12px; /* Adjusted font size for smaller screens */
 }

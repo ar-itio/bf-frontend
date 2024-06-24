@@ -73,12 +73,12 @@ const ProfileHeader = ({toggleSidebar}) => {
     // fetchAccountData();
     return (
       <div className="dropdown nav-items ">
-        <button
+        &nbsp;<button
           className="nav-link active"
           aria-current="page"
           onClick={toggleDropdown}
         >
-          <b className="nav-items a">
+          <b className="h-text nav-items a">
             {customer.firstName} {customer.lastName}
           </b>
           <img
@@ -97,7 +97,7 @@ const ProfileHeader = ({toggleSidebar}) => {
             <Link className="dropdown-item" to="/customer/security"  onClick={toggleSidebar}  >
             Security
           </Link>
-            <button className="dropdown-item" onClick={handleSignOut}>
+            &nbsp;<button className="dropdown-item" onClick={handleSignOut}>
               Sign Out
               &nbsp;<FontAwesomeIcon icon={faSignOutAlt} className="ml-2" />
             </button>
@@ -129,17 +129,11 @@ const ProfileHeader = ({toggleSidebar}) => {
           </Link>
         </div> */}
         <div className="col dropdown">
-          <button onClick={handleSignOut}>
-            <b className="text-color" style={{ marginRight: "5px" }}>
+          &nbsp;<button onClick={handleSignOut}>
+            <b className="sidebar-text " style={{ marginRight: "5px" }}>
               Sign Out
             </b>
-            <img
-              src={signOutIcon}
-              width="30"
-              height="30"
-              className="d-inline-block align-right"
-              alt=""
-            />
+            <FontAwesomeIcon icon={faSignOutAlt} className="ml-2 sidebar-text" />
           </button>
         </div>
       </div>
