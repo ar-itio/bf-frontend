@@ -175,8 +175,8 @@ const ViewCustomerTransactions = () => {
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Customer Success Transactions</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Customer Success Transactions</h4>
           </div>
           <div
             className="card-body"
@@ -242,7 +242,7 @@ const ViewCustomerTransactions = () => {
                 </select>
               </div>
               <div className="col">
-                <button
+                &nbsp;<button
                   className="btn bg-color custom-bg-text mb-3"
                   onClick={generatePDF}
                 >
@@ -277,7 +277,7 @@ const ViewCustomerTransactions = () => {
                         <td><b>{transaction.status ? transaction.status : "-"}</b></td>
                         <td><b> {transaction.date}</b></td>
                         <td>
-                          <button
+                          &nbsp;<button
                             className="btn btn-primary"
                             onClick={() => handleEditTransaction(index)}
                           >
@@ -293,17 +293,15 @@ const ViewCustomerTransactions = () => {
           </div>
         </div>
       </div>
-      <div className="modal " style={{ display: showModal ? "block" : "none" }}>
+      <div className="mt-2 " style={{ display: showModal ? "block" : "none" }}>
   <div className="modal-dialog">
     <div className="modal-content">
     <div
           className="card  custom-bg border-color "
-          style={{
-            height: "42rem",width:"40rem",
-          }}
+
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Transactions Details</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Transactions Details</h4>
           </div>
       <div className="modal-header">
         <h3>User Name: {editTransaction?.user?.name || ""}</h3>
@@ -396,7 +394,7 @@ const ViewCustomerTransactions = () => {
         </div></div>
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-primary" onClick={handleCloseEditForm}>
+        &nbsp;<button type="button" className="btn btn-primary" onClick={handleCloseEditForm}>
           Close
         </button>
       </div>

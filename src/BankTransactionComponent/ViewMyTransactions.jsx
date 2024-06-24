@@ -93,8 +93,8 @@ const ViewMyTransactions = () => {
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Customer Transactions</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Customer Transactions</h4>
           </div>
           <div
             className="card-body"
@@ -114,7 +114,7 @@ const ViewMyTransactions = () => {
                 </div>
 
                 <div class="col">
-                  <button 
+                  &nbsp;<button 
                     type="submit"
                     class="btn bg-color custom-bg-text  ms-5 mb-3"
                     onClick={searchTxns}
@@ -123,7 +123,7 @@ const ViewMyTransactions = () => {
                   </button>
                 </div>
                 <div class="col">
-                <button
+                &nbsp;<button
                 class="btn bg-color custom-bg-text ms-5 mb-3"
                 onClick={generatePDF}
               >
