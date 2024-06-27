@@ -5,14 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-const AddFeeDetail = () => {
+const AddFeeDetail = (obj, closeModal) => {
   let navigate = useNavigate();
 
   const [feeRequest, setFeeRequest] = useState({
     type: "",
     fee: "",
-    feeAmount:"",
-
+    feeAmount: "",
   });
 
   const [feeTypes, setFeeTypes] = useState([]);
@@ -39,15 +38,42 @@ const AddFeeDetail = () => {
 
     return response.data;
   };
-
+  const handleClose = (e) => {
+    window.location.href = "/admin/fee/detail/view";
+  };
+  const retrieveFeeDetails = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/api/fee/detail/fetch/all`,
+      {
+        headers: {
+          Authorization: "Bearer " + admin_jwtToken,
+        },
+      }
+    );
+    console.log(response.data);
+    return response.data.feeDetails;
+  };
   useEffect(() => {
     const getAlltypes = async () => {
+      const feeResponse = await retrieveFeeDetails();
       const types = await retrieveAllFeeType();
-      if (types) {
-        setFeeTypes(types);
+      console.log(feeResponse);
+      const feeDetailTypes = feeResponse.map((detail) => detail.type);
+      const filteredTypes = types.filter(
+        (type) => !feeDetailTypes.includes(type)
+      );
+      if (filteredTypes.length > 0) {
+        setFeeTypes(filteredTypes);
       }
+      setFeeRequest(
+        obj?.feeDetail || {
+          type: "",
+          fee: "",
+          feeAmount: "",
+        }
+      );
     };
-
+    console.log(obj.feeDetail);
     getAlltypes();
   }, []);
 
@@ -125,12 +151,18 @@ const AddFeeDetail = () => {
           className="card form-card border-color custom-bg"
           style={{ width: "25rem" }}
         >
-          <div className="card-header bg-color text-center custom-bg-text">
-            <h4 className="card-title">Add Fee Detail</h4>
+          <div className="card-header text-center custom-bg-text "
+          style={{ height: "15%" }}>
+            <h4 className="text-color ">
+              {obj.feeDetail !== null ? "Edit" : "Add"} Fee Detail
+            </h4>
           </div>
           <div className="card-body">
             <form>
-              <div class="mb-3 text-color">
+              <div
+                class="mb-3 text-color"
+                style={{ display: obj.feeDetail !== null ? "none" : "block" }}
+              >
                 <label for="role" class="form-label">
                   <b>Fee Type</b>
                 </label>
@@ -138,6 +170,7 @@ const AddFeeDetail = () => {
                   onChange={handleUserInput}
                   className="form-control"
                   name="type"
+                  value={feeRequest.type}
                 >
                   <option value="">Select Fee Type</option>
                   {feeTypes.map((type) => {
@@ -145,7 +178,6 @@ const AddFeeDetail = () => {
                   })}
                 </select>
               </div>
-
               <div className="mb-3 text-color">
                 <label for="beneficiaryName" class="form-label">
                   <b>Fee %</b>
@@ -174,13 +206,21 @@ const AddFeeDetail = () => {
                   required
                 />
               </div>
-
+              &nbsp;
+              <button
+                type="submit"
+                onClick={handleClose}
+                className="btn bg-color custom-bg-text"
+              >
+                close
+              </button>
+              &nbsp; &nbsp;
               <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={addFeeDetail}
               >
-                Add fee Detail
+                Save
               </button>
               <ToastContainer />
             </form>
