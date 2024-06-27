@@ -114,12 +114,12 @@ const UserProfile = () => {
   };
 
   return (
-    <div className=" mt-2 ">
+    <div className=" container mt-5">
       <div className="row justify-content-center">
         <div className=" col-md-8">
           <div className=" card bg-light shadow rounded-lg">
-            <div className="img-fluid card-header custom-bg-text text-center">
-              <h4 className=" text-color " >Customer Profile</h4>
+            <div className="img-fluid card-header custom-bg-text text-center bg-color">
+              <h2>Customer Profile</h2>
             </div>
             <div className=" card-body d-flex align-items-top">
               <div className="col-md-4 text-center"style={{marginTop:'20px' }} >
@@ -173,7 +173,7 @@ const UserProfile = () => {
                   <p className="row"><b className="col-md-5">Address:</b> <div className="col">{customer.address}</div></p>
                   <p className="row"><b className="col-md-5 ">Account Balance:</b> <div className="col">Rs. {customer.accountBalance}</div></p>
                 </div >
-                &nbsp;<button style={{ marginLeft: '40px' }} className="img-fluid btn btn-primary btn-lg" onClick={navigateToUpdateProfilePage}>Update Profile</button>
+                <button style={{ marginLeft: '40px' }} className="img-fluid btn btn-primary btn-lg" onClick={navigateToUpdateProfilePage}>Update Profile</button>
               </div>  
             </div>
           </div>

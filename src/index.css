@@ -18,7 +18,7 @@ code {
 }
 
 .text-color {
-  color: #29447a ;
+  color: #2977b0 ;
 }
 
 .text-color1 {
@@ -30,11 +30,11 @@ code {
 }
 
 .custom-bg-text {
-  color: #f2f0ed;
+  color: #FDF0D5;
 }
 
 .bg-color {
-  background-color: #282f4b;
+  background-color: #1a8ffc;
 }
 
 .rounded-card {
@@ -55,8 +55,4 @@ code {
 
 .card:hover .product-card {
   transform: scale(1.02);
-}
-.card-header{
-  height: 7%;
-  border-radius: #354482;
 }

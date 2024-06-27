@@ -82,8 +82,8 @@ const AddMoney = () => {
           className="card form-card border-color custom-bg"
           style={{ width: "25rem" }}
         >
-          <div className="card-header text-center custom-bg-text">
-            <h4 className="text-color">Add Money</h4>
+          <div className="card-header bg-color text-center custom-bg-text">
+            <h4 className="card-title">Add Money</h4>
           </div>
           <div className="card-body">
             <form>
@@ -144,7 +144,7 @@ const AddMoney = () => {
                   required
                 />
               </div>
-              &nbsp;<button
+              <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={addMoney}

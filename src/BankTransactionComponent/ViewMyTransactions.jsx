@@ -88,13 +88,13 @@ const ViewMyTransactions = () => {
     <div>
       <div className="mt-2">
         <div
-          className="card   "
+          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
           style={{
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center">
-            <h4 className=" text-color " >Customer Transactions</h4>
+          <div className="card-header custom-bg-text text-center bg-color">
+            <h2>Customer Transactions</h2>
           </div>
           <div
             className="card-body"
@@ -102,9 +102,9 @@ const ViewMyTransactions = () => {
               overflowY: "auto",
             }}
           >
-            <div className=" mt-3">
-              <form class="row">
-                <div class="col">
+            <div className="d-flex aligns-items-center justify-content-center mt-3">
+              <form class="row g-3">
+                <div class="col-auto">
                   <input
                     onChange={(e) => setTempTransactionRefId(e.target.value)}
                     className="form-control"
@@ -113,26 +113,23 @@ const ViewMyTransactions = () => {
                   />
                 </div>
 
-                <div class="col">
-                  &nbsp;<button 
+                <div class="col-auto">
+                  <button
                     type="submit"
-                    class="btn bg-color custom-bg-text  ms-5 mb-3"
+                    class="btn bg-color custom-bg-text mb-3"
                     onClick={searchTxns}
                   >
                     Search
                   </button>
                 </div>
-                <div class="col">
-                &nbsp;<button
+              </form>
+
+              <button
                 class="btn bg-color custom-bg-text ms-5 mb-3"
                 onClick={generatePDF}
               >
                 Download Statement
               </button>
-              </div>
-              </form>
-
-
             </div>
 
             <div className="table-responsive mt-3">

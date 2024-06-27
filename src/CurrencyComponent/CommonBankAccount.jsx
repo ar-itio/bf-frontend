@@ -1,44 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { FaEdit, FaTrash,FaPlus   } from "react-icons/fa";
 
-const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
+const CommonBankAccounts = ({ currencies, setCurrencies }) => {
   const admin_jwtToken = sessionStorage.getItem("admin-jwtToken");
   const [showModal, setShowModal] = useState(false);
-  const [editIndex, setEditIndex] = useState("");
-  const [editedAccount, setEditedAccount] = useState({
-    id: "",
-    beneficiary: "",
-    bankName: "",
-    iban: "",
-    swiftCode: "",
-    bankAddress: "",
+  const [editIndex, seteditIndex] = useState("");
+  const [editedCurrency, setEditedCurrency] = useState({
+    code: "",
+    name: "",
+    territory: "",
+    icon: "",
     status: "Active",
-    currencyMap: [], // Array to store selected currencies
   });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editedAccount.currencyMap === 0) {
-      // Notify the user to select currencies
-      toast.error("Please select currencies", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return; // Exit the function
-    }
     try {
-      // Make POST request to the API endpoint to add account
-      console.log(editedAccount);
+      // Make POST request to the API endpoint to add currency
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/currencies/addAccount`,
-        editedAccount,
+        `${process.env.REACT_APP_BASE_URL}/api/currencies/add`,
+        editedCurrency,
         {
           headers: {
             Authorization: "Bearer " + admin_jwtToken,
@@ -46,7 +28,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
         }
       );
       // Notify success
-      toast.success("Account added successfully", {
+      toast.success("Currency added successfully", {
         position: "top-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -55,12 +37,18 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
         draggable: true,
         progress: undefined,
       });
-      // Pass new account data to parent component
-      fetchAccountData();
-      handleCloseModal();
+      // Pass new currency data to parent component      // Reset form fields
+      // setCurrencies(editedCurrency, editedCurrency.id)
+      setShowModal(false);
+
+      setCurrencies((prevCurrencies) => {
+        const updatedCurrencies = [...prevCurrencies];
+        updatedCurrencies[editIndex] = editedCurrency;
+        return updatedCurrencies;
+      });
     } catch (error) {
       // Notify error
-      toast.error("Failed to add account", {
+      toast.error("Failed to add currency", {
         position: "top-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -69,34 +57,21 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
         draggable: true,
         progress: undefined,
       });
-      console.error("Error adding account:", error);
+      console.error("Error adding currency:", error);
     }
   };
-
   const handleCloseModal = () => {
     setShowModal(false);
-    setEditedAccount({
-      id: "",
-      beneficiary: "",
-      bankName: "",
-      iban: "",
-      swiftCode: "",
-      bankAddress: "",
-      status: "Active",
-      currencyMap: [],
-    });
   };
-
   const handleEdit = (index) => {
     setShowModal(true);
-    setEditedAccount(accounts[index]);
-    setEditIndex(index);
+    setEditedCurrency(currencies[index]);
+    seteditIndex(index);
   };
-
   const handleDelete = async (id) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/currencies/deleteAccount`,
+        `${process.env.REACT_APP_BASE_URL}/api/currencies/delete`,
         id,
         {
           headers: {
@@ -106,7 +81,7 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
         }
       );
       // Display toast message after successful deletion
-      toast.success("Account deleted successfully", {
+      toast.success("Currency deleted successfully", {
         position: "top-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -115,137 +90,94 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
         draggable: true,
         progress: undefined,
       });
-      // Find the index of the deleted account
-      fetchAccountData();
-      setEditedAccount({
-        id: "",
-        beneficiary: "",
-        bankName: "",
-        iban: "",
-        swiftCode: "",
-        bankAddress: "",
-        status: "Active",
-        currencyMap: [],
-      });
+      // Find the index of the deleted currency
+      const index = currencies.findIndex((currency) => currency.id === id);
+      if (index !== -1) {
+        // Create a new array without the deleted currency object
+        const updatedCurrencies = [...currencies];
+        updatedCurrencies.splice(index, 1);
+        // Update the currency list state
+        setCurrencies(updatedCurrencies);
+      }
     } catch (error) {
-      console.error("Error deleting account:", error);
+      console.error("Error deleting currency:", error);
       // Handle error
     }
   };
-  const fetchAccountData = async () => {
-    try {
-      // Fetch account data from the server
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/currencies/fatchAccount`
-      );
-      // Update the account state with the fetched data
-      setAccounts(response.data.commonBankAccountDetais);
-    } catch (error) {
-      // Handle error
-      console.error("Error fetching account data:", error);
-      // Notify error
-      toast.error("Failed to fetch account data", {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
+
   return (
     <div>
-      <div style={{ display: showModal ? "none" : "block" }}>
-        <h3>Added Common Bank Accounts</h3>
-        &nbsp;<button
-          className="btn btn-primary"
-          style={{
-            position: "absolute",
-            top: "80px", // Adjust as needed
-            right: "50px", // Adjust as needed
-          }}
-          onClick={() => setShowModal(true)}
-        >
-          {" "}
-          add <FaPlus />
-        </button>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>
-                <b>Beneficiary </b>
-              </th>
-              <th>
-                <b>Bank Name</b>
-              </th>
-              <th>
-                <b>IBAN/ Bank Account Number</b>
-              </th>
-              <th>
-                <b>Swift Code/ BIC </b>
-              </th>
-              <th>
-                <b> Bank Address</b>
-              </th>
-              <th>
-                <b>Currencies </b>
-              </th>
-              <th>
-                <b>Status</b>
-              </th>
-              <th>
-                <b>Action</b>
-              </th>
+    <div style={{ display: showModal ? "none" : "block" }}>
+      <h3>Added Common Bank Accounts</h3>
+    <button className="btn btn-primary"   style={{
+          position: "absolute",
+          top: "80px", // Adjust as needed
+          right: "50px", // Adjust as needed
+        }}> add <FaPlus /></button>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>
+              <b>Beneficiary </b>
+            </th>
+            <th>
+              <b>Bank Name</b>
+            </th>
+            <th>
+              <b>IBAN/ Bank Account Number</b>
+            </th>
+            <th>
+              <b>Swift Code/ BIC </b>
+            </th>
+            <th>
+              <b> Bank Address</b>
+            </th>
+            <th>
+              <b>Currency </b>
+            </th>
+            <th>
+              <b>Status</b>
+            </th>
+            <th>
+              <b>Action</b>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {currencies.map((currency, index) => (
+            <tr key={index}>
+              <td>{currency.code}</td>
+              <td>{currency.name}</td>
+              <td>{currency.territory}</td>
+              <td>{currency.icon}</td>
+              <td>{currency.icon}</td>
+              <td>{currency.icon}</td>
+              <td>{currency.status}</td>
+              <td>
+                <button
+                  className="btn btn-primary me-2"
+                  onClick={() => handleEdit(index)}
+                >
+                  <FaEdit />
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(currency.id)}
+                >
+                  <FaTrash />
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {accounts.map((account, index) => (
-              <tr key={index}>
-                <td>{account.beneficiary}</td>
-                <td>{account.bankName}</td>
-                <td>{account.iban}</td>
-                <td>{account.swiftCode}</td>
-                <td>{account.bankAddress}</td>
-                <td>
-                  {account.currencyMap
-                    .map((currencyId) => {
-                      const currency = currencies.find(
-                        (c) => c.id === currencyId.id
-                      );
-                      return currency ? currency.name : "";
-                    })
-                    .join(", ")}
-                </td>
-                <td>{account.status}</td>
-                <td>
-                  &nbsp;<button
-                    className="btn btn-primary me-2"
-                    onClick={() => handleEdit(index)}
-                  >
-                    <FaEdit />
-                  </button>
-                  &nbsp;<button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(account)}
-                  >
-                    <FaTrash />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
       </div>
       <div className="mb-2" style={{ display: showModal ? "block" : "none" }}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">
-                {editIndex !== "" ? "Edit" : "Add"} Common Bank Account
-              </h5>
-              &nbsp;<button
+              <h5 className="modal-title">Edit Common Bank Accounts </h5>
+              <button
                 type="button"
                 className="btn-close"
                 onClick={handleCloseModal}
@@ -258,14 +190,13 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={editedAccount.beneficiary}
+                    value={editedCurrency.code}
                     onChange={(e) =>
-                      setEditedAccount({
-                        ...editedAccount,
-                        beneficiary: e.target.value,
+                      setEditedCurrency({
+                        ...editedCurrency,
+                        code: e.target.value,
                       })
                     }
-                    placeholder="Beneficiary"
                   />
                 </div>
                 <div className="mb-3">
@@ -273,14 +204,13 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={editedAccount.bankName}
+                    value={editedCurrency.name}
                     onChange={(e) =>
-                      setEditedAccount({
-                        ...editedAccount,
-                        bankName: e.target.value,
+                      setEditedCurrency({
+                        ...editedCurrency,
+                        name: e.target.value,
                       })
                     }
-                    placeholder="Bank Name"
                   />
                 </div>
                 <div className="mb-3">
@@ -290,14 +220,13 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={editedAccount.iban}
+                    value={editedCurrency.territory}
                     onChange={(e) =>
-                      setEditedAccount({
-                        ...editedAccount,
-                        iban: e.target.value,
+                      setEditedCurrency({
+                        ...editedCurrency,
+                        territory: e.target.value,
                       })
                     }
-                    placeholder="IBAN/ Bank Account Number"
                   />
                 </div>
                 <div className="mb-3">
@@ -305,14 +234,13 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={editedAccount.swiftCode}
+                    value={editedCurrency.icon}
                     onChange={(e) =>
-                      setEditedAccount({
-                        ...editedAccount,
-                        swiftCode: e.target.value,
+                      setEditedCurrency({
+                        ...editedCurrency,
+                        icon: e.target.value,
                       })
                     }
-                    placeholder="Swift Code/ BIC"
                   />
                 </div>
                 <div className="mb-3">
@@ -320,51 +248,40 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
                   <input
                     type="text"
                     className="form-control"
-                    value={editedAccount.bankAddress}
+                    value={editedCurrency.icon}
                     onChange={(e) =>
-                      setEditedAccount({
-                        ...editedAccount,
-                        bankAddress: e.target.value,
+                      setEditedCurrency({
+                        ...editedCurrency,
+                        icon: e.target.value,
                       })
                     }
-                    placeholder="Bank Address"
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Currencies</label>
-                  <select
-                    className="form-select"
-                    value={editedAccount.currencyMap}
+                  <label className="form-label">Currency</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={editedCurrency.icon}
                     onChange={(e) =>
-                      setEditedAccount({
-                        ...editedAccount,
-                        currencyMap: Array.from(
-                          e.target.selectedOptions,
-                          (option) => option.value
-                        ),
+                      setEditedCurrency({
+                        ...editedCurrency,
+                        icon: e.target.value,
                       })
                     }
-                    multiple // Enable multiple selection
-                  >
-                    {currencies.map((currency) => (
-                      <option key={currency.code} value={currency.code}>
-                        {currency.name}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Status</label>
                   <select
                     className="form-select"
-                    value={editedAccount.status}
+                    value={editedCurrency.status}
                     onChange={(e) =>
-                      setEditedAccount({
-                        ...editedAccount,
+                      setEditedCurrency({
+                        ...editedCurrency,
                         status: e.target.value,
                       })
                     }
-                    placeholder="Status"
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -373,15 +290,14 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
               </form>
             </div>
             <div className="modal-footer">
-              &nbsp;<button
+              <button
                 type="button"
                 className="btn btn-secondary"
                 onClick={handleCloseModal}
               >
                 Close
               </button>
-              &nbsp;
-              &nbsp;<button
+              <button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleSubmit}
@@ -395,10 +311,8 @@ const CommonBankAccounts = ({ accounts, setAccounts, currencies }) => {
     </div>
   );
 };
-
 const CurrencyApp = () => {
   const [currencies, setCurrencies] = useState([]);
-  const [accounts, setAccounts] = useState([]);
 
   const handleAddCurrency = (newCurrency) => {
     // Update the list of currencies with the new currency
@@ -415,10 +329,6 @@ const CurrencyApp = () => {
         );
         // Set the fetched currencies data to state
         setCurrencies(response.data.currencyDetails);
-        const response1 = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/api/currencies/fatchAccount`
-        );
-        setAccounts(response1.data.commonBankAccountDetais);
       } catch (error) {
         // Handle error if fetching data fails
         console.error("Error fetching currencies:", error);
@@ -442,13 +352,13 @@ const CurrencyApp = () => {
   return (
     <div className="mt-2">
       <div
-        className="card  "
+        className="card form-card ms-5 me-5 mb-5 custom-bg border-color"
         style={{
           height: "45rem",
         }}
       >
-        <div className="card-header custom-bg-text text-center">
-          <h4 className=" text-color " >Common Bank Accounts Detail</h4>
+        <div className="card-header custom-bg-text text-center bg-color">
+          <h2>Common Bank Accounts Detail</h2>
         </div>
         <div
           className="card-body d-flex flex-column"
@@ -457,9 +367,8 @@ const CurrencyApp = () => {
           }}
         >
           <CommonBankAccounts
-            accounts={accounts}
-            setAccounts={setAccounts}
             currencies={currencies}
+            setCurrencies={setCurrencies}
           />
         </div>
       </div>

@@ -38,7 +38,7 @@ const ViewAllBanks = () => {
     <div>
       <div className="mt-2">
         <div
-          className="card   "
+          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
           style={{
             height: "45rem",
           }}

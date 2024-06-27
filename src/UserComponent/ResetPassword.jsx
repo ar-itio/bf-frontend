@@ -109,10 +109,8 @@ const ResetPassword = () => {
           className="card form-card border-color custom-bg"
           style={{ width: "25rem" }}
         >
-          <div className="card-header text-center custom-bg-text"
-          style={{ height: "20%" }}>
-
-            <h4 className="text-color">Reset Password</h4>
+          <div className="card-header bg-color text-center custom-bg-text">
+            <h4 className="card-title">Reset Password</h4>
           </div>
           <div className="card-body">
             <form>
@@ -143,7 +141,7 @@ const ResetPassword = () => {
                 />
               </div>
 
-              &nbsp;<button
+              <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={resetPassword}

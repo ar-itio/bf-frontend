@@ -96,13 +96,13 @@ const UpdateBeneficiaryForm = () => {
 
   return (
     <div>
-      <div className="mt-2 ">
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
-          className="card "
-
+          className="card form-card border-color custom-bg"
+          style={{ width: "25rem" }}
         >
-          <div className="card-header text-center custom-bg-text">
-            <h4 className="text-color">Update Beneficiary Account</h4>
+          <div className="card-header bg-color text-center custom-bg-text">
+            <h4 className="card-title">Update Beneficiary Account</h4>
           </div>
           <div className="card-body">
             <form>
@@ -404,7 +404,7 @@ const UpdateBeneficiaryForm = () => {
                 </select>
               </div>
 
-              &nbsp;<button
+              <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={addBeneficiary}

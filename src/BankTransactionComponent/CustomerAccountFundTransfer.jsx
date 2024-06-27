@@ -91,13 +91,13 @@ const CustomerAccountFundTransfer = () => {
 
   return (
     <div>
-      <div className="mt-2 ">
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
           className="card form-card border-color custom-bg"
           style={{ width: "50rem" }}
         >
           <div className="card-header bg-color custom-bg-text text-center">
-            <h5 className="text-color">Transfer Money</h5>
+            <h5 className="card-title">Transfer Money</h5>
           </div>
           <div className="card-body text-color">
             <form className="row g-3">
@@ -158,8 +158,8 @@ const CustomerAccountFundTransfer = () => {
                 />
               </div>
 
-              <div className="">
-                &nbsp;<button
+              <div className="d-flex aligns-items-center justify-content-center">
+                <button
                   type="submit"
                   className="btn bg-color custom-bg-text col-md-4"
                   onClick={saveAccount}

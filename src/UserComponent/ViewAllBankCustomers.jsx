@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { FaEdit } from "react-icons/fa";
 
 const ViewAllBankCustomers = () => {
   let navigate = useNavigate();
   const [allCustomer, setAllCustomer] = useState([]);
+
   const [customerName, setCustomerNumber] = useState("");
+
   const [tempCustomerName, setTempCustomerName] = useState("");
-  const [editTransaction, setEditTransaction] = useState("");
-  const [showModal, setShowModal] = useState(false);
+
   const [updateUserStatusRequest, setUpdateUserStatusRequest] = useState({
     userId: "",
     status: "",
@@ -68,27 +68,68 @@ const ViewAllBankCustomers = () => {
     }
   }, [customerName]);
 
-  const handleCloseEditForm = () => {
-    setEditTransaction("");
-    setShowModal(false);
+  const searchBankCustomersByName = (e) => {
+    e.preventDefault();
+    setCustomerNumber(tempCustomerName);
   };
-  const handleStatusChange = (e) => {
-    setEditTransaction((prevState) => ({
-      ...prevState,
-      status: e.target.value,
-    }));
+
+  const viewAccountDetails = (customer) => {
+    navigate("/customer/bank/account/detail", { state: customer });
   };
-  const handleSubmitEdit = async (e) => {
-    try {
-      // Make a POST request to the API endpoint with the user data
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/user/update-profile`,
-        editTransaction
-      );
-      console.log(response.status); // Log response data
-      if (response.status === 200) {
-        // Display success message to the user
-        toast.success("Profile updated successfully.", {
+
+  const activateUser = (userId, e) => {
+    updateUserStatusRequest.userId = userId;
+    updateUserStatusRequest.status = "Active";
+
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/user/update/status`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateUserStatusRequest),
+    })
+      .then((result) => {
+        console.log("result", result);
+        result.json().then((res) => {
+          console.log(res);
+
+          if (res.success) {
+            console.log("Got the success response");
+
+            toast.success(res.responseMessage, {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 1000); // Redirect after 3 seconds
+          } else {
+            console.log("Didn't got success response");
+            toast.error("It seems server is down", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 1000); // Redirect after 3 seconds
+          }
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("It seems server is down", {
           position: "top-center",
           autoClose: 1000,
           hideProgressBar: false,
@@ -99,37 +140,88 @@ const ViewAllBankCustomers = () => {
         });
         setTimeout(() => {
           window.location.reload(true);
-          handleCloseEditForm();
-        }, 1000);
-        return;
-      } else {
-        // Handle other status codes if needed
-        console.error("Unexpected status code:", response.status);
-        toast.error("Failed to update profile. Unexpected status code.");
-      }
-    } catch (error) {
-      // If there was an error with the request, display an error message
-      console.error("Error updating profile:", error);
-      toast.error("Failed to update profile. Please try again later.");
-    }
+        }, 1000); // Redirect after 3 seconds
+      });
   };
-  const handleEdit = (customer) => {
-    console.log(customer);
-    setEditTransaction(customer);
-    console.log(editTransaction);
-    setShowModal(true);
+
+  const deactivateUser = (userId) => {
+    updateUserStatusRequest.userId = userId;
+    updateUserStatusRequest.status = "Deactivated";
+
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/user/update/status`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateUserStatusRequest),
+    })
+      .then((result) => {
+        console.log("result", result);
+        result.json().then((res) => {
+          console.log(res);
+
+          if (res.success) {
+            console.log("Got the success response");
+
+            toast.success(res.responseMessage, {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 1000); // Redirect after 3 seconds
+          } else {
+            console.log("Didn't got success response");
+            toast.error("It seems server is down", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 1000); // Redirect after 3 seconds
+          }
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("It seems server is down", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000); // Redirect after 3 seconds
+      });
   };
+
   return (
     <div>
-      <div className="mt-2" style={{ display: showModal ? "none" : "block" }}>
+      <div className="mt-2">
         <div
-          className="card   "
+          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
           style={{
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center">
-            <h4 className=" text-color " >All Bank Customers</h4>
+          <div className="card-header custom-bg-text text-center bg-color">
+            <h2>All Bank Customers</h2>
           </div>
           <div
             className="card-body"
@@ -149,8 +241,8 @@ const ViewAllBankCustomers = () => {
                     <th scope="col">Street</th>
                     <th scope="col">City</th>
                     <th scope="col">Pincode</th>
+
                     <th scope="col">Status</th>
-                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -182,181 +274,11 @@ const ViewAllBankCustomers = () => {
                         <td>
                           <b>{customer.status}</b>
                         </td>
-                        <td>
-                          &nbsp;<button
-                            className="btn btn-primary me-2"
-                            onClick={() => handleEdit(customer)}
-                          >
-                            <FaEdit />
-                          </button>
-                        </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mt-2" style={{ display: showModal ? "block" : "none" }}>
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div
-              className="card custom-bg border-color"
-   
-            >
-              <div className="card-header custom-bg-text text-center">
-                <h4 className=" text-color " >Customer Details</h4>
-              </div>
-              <div className="modal-body">
-                <div className="row mb-3">
-            <div className="col-md-3">
-              <label><b>User Name:</b></label>
-              <input type="text" value={editTransaction?.name || ""} onChange={(e) => setEditTransaction({ ...editTransaction, name: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Account Balance:</b></label>
-              <input type="text" value={editTransaction?.accountBalance || ""} onChange={(e) => setEditTransaction({ ...editTransaction, accountBalance: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Account ID:</b></label>
-              <input type="text" value={editTransaction?.accountId || ""} onChange={(e) => setEditTransaction({ ...editTransaction, accountId: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Account Number:</b></label>
-              <input type="text" value={editTransaction?.accountNumber || ""} onChange={(e) => setEditTransaction({ ...editTransaction, accountNumber: e.target.value })} className="form-control"/>
-            </div>
-          </div> <div className="row mb-3">
-            <div className="col-md-3">
-              <label><b>Address:</b></label>
-              <input type="text" value={editTransaction?.street || ""} onChange={(e) => setEditTransaction({ ...editTransaction, street: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>City:</b></label>
-              <input type="text" value={editTransaction?.city || ""} onChange={(e) => setEditTransaction({ ...editTransaction, city: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>State:</b></label>
-              <input type="text" value={editTransaction?.state || ""} onChange={(e) => setEditTransaction({ ...editTransaction, state: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Country:</b></label>
-              <input type="text" value={editTransaction?.country || ""} onChange={(e) => setEditTransaction({ ...editTransaction, country: e.target.value })} className="form-control"/>
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-md-3">
-              <label><b>Pincode:</b></label>
-              <input type="text" value={editTransaction?.pincode || ""} onChange={(e) => setEditTransaction({ ...editTransaction, pincode: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Company Name:</b></label>
-              <input type="text" value={editTransaction?.companyName || ""} onChange={(e) => setEditTransaction({ ...editTransaction, companyName: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Company Address:</b></label>
-              <input type="text" value={editTransaction?.companyAddress || ""} onChange={(e) => setEditTransaction({ ...editTransaction, companyAddress: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Company Registration Number:</b></label>
-              <input type="text" value={editTransaction?.companyRegistrationNumber || ""} onChange={(e) => setEditTransaction({ ...editTransaction, companyRegistrationNumber: e.target.value })} className="form-control"/>
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-md-3">
-              <label><b>Date of Incorporation:</b></label>
-              <input type="date" value={editTransaction?.dateOfIncorporation || ""} onChange={(e) => setEditTransaction({ ...editTransaction, dateOfIncorporation: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Contact Number:</b></label>
-              <input type="text" value={editTransaction?.contact || ""} onChange={(e) => setEditTransaction({ ...editTransaction, contact: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Email:</b></label>
-              <input type="email" value={editTransaction?.email || ""} onChange={(e) => setEditTransaction({ ...editTransaction, email: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Date of Birth:</b></label>
-              <input type="date" value={editTransaction?.dateOfBirth || ""} onChange={(e) => setEditTransaction({ ...editTransaction, dateOfBirth: e.target.value })} className="form-control"/>
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-md-3">
-              <label><b>Place of Birth:</b></label>
-              <input type="text" value={editTransaction?.placeOfBirth || ""} onChange={(e) => setEditTransaction({ ...editTransaction, placeOfBirth: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Nationality:</b></label>
-              <input type="text" value={editTransaction?.nationality || ""} onChange={(e) => setEditTransaction({ ...editTransaction, nationality: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Gender:</b></label>
-              <input type="text" value={editTransaction?.gender || ""} onChange={(e) => setEditTransaction({ ...editTransaction, gender: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>ID Type:</b></label>
-              <input type="text" value={editTransaction?.idType || ""} onChange={(e) => setEditTransaction({ ...editTransaction, idType: e.target.value })} className="form-control"/>
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-md-3">
-              <label><b>ID Number:</b></label>
-              <input type="text" value={editTransaction?.idNumber || ""} onChange={(e) => setEditTransaction({ ...editTransaction, idNumber: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>ID Expiry Date:</b></label>
-              <input type="date" value={editTransaction?.idExpiryDate || ""} onChange={(e) => setEditTransaction({ ...editTransaction, idExpiryDate: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Employment Status:</b></label>
-              <input type="text" value={editTransaction?.employmentStatus || ""} onChange={(e) => setEditTransaction({ ...editTransaction, employmentStatus: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Business Activity:</b></label>
-              <input type="text" value={editTransaction?.businessActivity || ""} onChange={(e) => setEditTransaction({ ...editTransaction, businessActivity: e.target.value })} className="form-control"/>
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-md-3">
-              <label><b>Profile Complete:</b></label>
-              <select className="form-select" value={editTransaction?.profileComplete ? true : false} onChange={(e) => setEditTransaction({ ...editTransaction, profileComplete: e.target.value  })}>
-                <option value= "true">Yes</option>
-                <option value ="false">No</option>
-              </select>
-            </div>
-            <div className="col-md-3">
-              <label><b>Profile Image URL:</b></label>
-              <input type="text" value={editTransaction?.profileImg || ""} onChange={(e) => setEditTransaction({ ...editTransaction, profileImg: e.target.value })} className="form-control"/>
-            </div>
-            <div className="col-md-3">
-              <label><b>Status:</b></label>
-              <select className="form-select" value={editTransaction?.status || "None"} onChange={handleStatusChange}>
-                <option value="Active">Active</option>
-                <option value="Inactive">Inactive</option>
-                <option value="Pending">Pending</option>
-                <option value="Suspended">Suspended</option>
-              </select>
-            </div>
-            </div>
-                <div className="modal-footer">
-                  &nbsp;<button
-                    type="button"
-                    style={{ marginRight: "10px" }}
-                    className="btn btn-primary"
-                    onClick={handleCloseEditForm}
-                  >
-                    Close
-                  </button>
-                  &nbsp;<button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={handleSubmitEdit}
-                  >
-                    Save changes
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>

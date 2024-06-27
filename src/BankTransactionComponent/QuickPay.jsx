@@ -87,15 +87,16 @@ const QuickPay = () => {
 
   return (
     <div>
-      <div className="mt-2">
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
         <div
-          className="card "
+          className="card form-card border-color custom-bg"
+          style={{ width: "45rem" }}
         >
-          <div className="card-header text-center custom-bg-text">
-            <h4 className="text-color">Quick Pay</h4>
+          <div className="card-header bg-color text-center custom-bg-text">
+            <h4 className="card-title">Quick Pay</h4>
           </div>
           <div className="card-body">
-            <h4 className="text-color text-color-second text-center">
+            <h4 className="card-title text-color-second text-center">
               Beneficiary Details
             </h4>
 
@@ -279,7 +280,7 @@ const QuickPay = () => {
                   required
                 />
               </div>
-              &nbsp;<button
+              <button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={accountTransfer}

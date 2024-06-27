@@ -113,7 +113,7 @@ const AddCurrency = ({ onAddCurrency }) => {
           onChange={(e) => setCurrencyIcon(e.target.value)}
         />
       </div>
-      &nbsp;<button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary">
         Add Currency
       </button>
     </form>
@@ -258,13 +258,13 @@ const CurrencyList = ({ currencies, setCurrencies }) => {
               <td>{currency.icon}</td>
               <td>{currency.status}</td>
               <td>
-                &nbsp;<button
+                <button
                   className="btn btn-primary me-2"
                   onClick={() => handleEdit(index)}
                 >
                   <FaEdit />
                 </button>
-                &nbsp;<button
+                <button
                   className="btn btn-danger"
                   onClick={() => handleDelete(currency.id)}
                 >
@@ -280,7 +280,7 @@ const CurrencyList = ({ currencies, setCurrencies }) => {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Edit Currany </h5>
-              &nbsp;<button
+              <button
                 type="button"
                 className="btn-close"
                 onClick={handleCloseModal}
@@ -363,14 +363,14 @@ const CurrencyList = ({ currencies, setCurrencies }) => {
               </form>
             </div>
             <div className="modal-footer">
-              &nbsp;<button
+              <button
                 type="button"
                 className="btn btn-secondary"
                 onClick={handleCloseModal}
               >
                 Close
               </button>
-              &nbsp;<button
+              <button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleSubmit}
@@ -426,13 +426,13 @@ const CurrencyApp = () => {
   return (
     <div className="mt-2">
       <div
-        className="card  "
+        className="card form-card ms-5 me-5 mb-5 custom-bg border-color"
         style={{
           height: "45rem",
         }}
       >
-        <div className="card-header custom-bg-text text-center">
-          <h4 className=" text-color " >Currency Detail</h4>
+        <div className="card-header custom-bg-text text-center bg-color">
+          <h2>Currency Detail</h2>
         </div>
         <div
           className="card-body d-flex flex-column"
