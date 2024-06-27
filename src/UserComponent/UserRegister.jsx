@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeft } from "react-icons/fa"; // Import the arrow left icon from Font Awesome
 
@@ -197,10 +197,10 @@ const UserRegister = () => {
                 </div>
 
                 <div className="col-12 mb-3 text-color">
-                  <ReCAPTCHA
+                  {/* <ReCAPTCHA
                     sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                     onChange={handleRecaptcha}
-                  />
+                  /> */}
                 </div>
 
                 <div className="d-flex aligns-items-center justify-content-center">
