@@ -120,12 +120,12 @@ const AccountTransfer = () => {
   return (
     <div>
       <div className="mt-2 d-flex aligns-items-center justify-content-center">
-        <div
+      <div
           className="card form-card border-color custom-bg"
           style={{ width: "25rem", display: showModal ? "none" : "block" }}
         >
-          <div className="card-header bg-color text-center custom-bg-text">
-            <h4 className="card-title">Account Transfer</h4>
+          <div className="card-header text-center custom-bg-text">
+            <h4 className="text-color">Account Transfer</h4>
           </div>
           <div className="card-body">
             <form>
@@ -231,7 +231,7 @@ const AccountTransfer = () => {
                   required
                 />
               </div>
-              <button
+              &nbsp;<button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={saveAccount}
@@ -252,8 +252,8 @@ const AccountTransfer = () => {
                 height: "20rem",
               }}
             >
-              <div className="card-header custom-bg-text text-center bg-color">
-                <h2>Confirm Transfer</h2>
+              <div className="card-header custom-bg-text text-center">
+                <h4 className=" text-color " >Confirm Transfer</h4>
               </div>
               <div className="modal-body">
                 <div className="row mb-3">
@@ -276,14 +276,14 @@ const AccountTransfer = () => {
                 </div>
               </div>
               <div className="modal-footer">
-                <button
+                &nbsp;<button
                   type="button"
                   className="btn btn-secondary"
                   onClick={() => setShowModal(false)}
                 >
                   Cencle
                 </button>
-                <button
+                &nbsp;<button
                   type="button"
                   className="btn btn-primary"
                   onClick={accountTransfer}

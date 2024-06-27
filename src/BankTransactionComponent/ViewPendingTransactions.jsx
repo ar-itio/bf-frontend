@@ -278,15 +278,15 @@ const ViewPendingTransactions = () => {
 
   return (
     <div>
-      <div className="mt-2" style={{ display: showModal ? "none" : "block" }}>
+      <div className="mt-2 "      style={{ display: showModal ? "none" : "block" }}>
         <div
-          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
+          className="card   "
           style={{
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Customer Pending Transactionss</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Customer Pending Transactionss</h4>
           </div>
           <div
             className="card-body"
@@ -320,7 +320,7 @@ const ViewPendingTransactions = () => {
                         <td><b>{transaction.status ? transaction.status : "-"}</b></td>
                         <td><b> {transaction.date}</b></td>
                         <td>
-                          <button
+                          &nbsp;<button
                             className="btn btn-primary"
                             onClick={() => handleEditTransaction(index)}
                           >
@@ -345,8 +345,8 @@ const ViewPendingTransactions = () => {
             height: "42rem",width:"40rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>Transactions Details</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >Transactions Details</h4>
           </div>
       <div className="modal-header">
       <div className="col-md-6">
@@ -449,10 +449,10 @@ const ViewPendingTransactions = () => {
           </div>
           <div className="modal-footer">
         <div className="col-md-">
-        <button type="button" style={{ marginRight: '10px' }} className="btn btn-primary" onClick={handleCloseEditForm}>
+        &nbsp;<button type="button" style={{ marginRight: '10px' }} className="btn btn-primary" onClick={handleCloseEditForm}>
           Close
         </button>
-        <button type="button" className="btn btn-primary" onClick={handleSubmitEdit}>
+        &nbsp;<button type="button" className="btn btn-primary" onClick={handleSubmitEdit}>
           Save changes
         </button>
           </div>          </div>

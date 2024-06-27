@@ -108,13 +108,13 @@ const ViewBeneficiaryAccounts = () => {
     <div>
       <div className="mt-2">
         <div
-          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
+          className="card"
           style={{
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>View Beneficiaries</h2>
+          <div className="card-header custom-bg-text text-center ">
+            <h4 className=" text-color " >View Beneficiaries</h4>
           </div>
           <div
             className="card-body"
@@ -162,21 +162,21 @@ const ViewBeneficiaryAccounts = () => {
                           <b>{beneficiary.status}</b>
                         </td>
                         <td>
-                          <button
+                          &nbsp;<button
                             onClick={() => navigateToQuickPay(beneficiary)}
                             className="btn btn-sm bg-color custom-bg-text ms-2"
                           >
                             Quick Pay
                           </button>
 
-                          <button
+                          &nbsp;<button
                             onClick={() => updateAccount(beneficiary)}
                             className="btn btn-sm bg-color custom-bg-text ms-2"
                           >
                             Udpate
                           </button>
 
-                          <button
+                          &nbsp;<button
                             onClick={() => deleteAccount(beneficiary.id)}
                             className="btn btn-sm bg-color custom-bg-text ms-2"
                           >
