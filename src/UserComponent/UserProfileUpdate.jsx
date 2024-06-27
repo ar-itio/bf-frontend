@@ -844,10 +844,10 @@ const UserProfileForm = () => {
   );
 
   return (
-    <div className="container py-4">
+    <div className="mt-2 ">
       <div className="card">
-        <div className="card-header bg-primary text-white text-center">
-          <h2>User Profile</h2>
+        <div className="card-header  text-white text-center">
+          <h4 className=" text-color " >User Profile</h4>
         </div>
         <div className="card-body">
           <div className="row">

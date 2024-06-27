@@ -72,13 +72,13 @@ const AdminRegisterForm = () => {
 
   return (
     <div>
-      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+      <div className="mt-2 ">
         <div
           className="card form-card border-color custom-bg"
           style={{ width: "25rem" }}
         >
-          <div className="card-header bg-color text-center custom-bg-text">
-            <h4 className="card-title">Admin Register</h4>
+          <div className="card-header text-center custom-bg-text">
+            <h4 className="text-color">Admin Register</h4>
           </div>
           <div className="card-body">
             <form>
@@ -109,7 +109,7 @@ const AdminRegisterForm = () => {
                   autoComplete="on"
                 />
               </div>
-              <button
+              &nbsp;<button
                 type="submit"
                 className="btn bg-color custom-bg-text"
                 onClick={loginAction}

@@ -38,13 +38,13 @@ const ViewBankManagers = () => {
     <div>
       <div className="mt-2">
         <div
-          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
+          className="card   "
           style={{
             height: "45rem",
           }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>All Bank Managers</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >All Bank Managers</h4>
           </div>
           <div
             className="card-body"
