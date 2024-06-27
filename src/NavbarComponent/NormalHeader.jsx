@@ -23,7 +23,7 @@ const NormalHeader = () => {
         </Link>
       </li>
 
-      {/* <li className="nav-item">
+      <li className="nav-item">
         <Link
           to="/user/customer/register"
           className="nav-link active"
@@ -31,7 +31,7 @@ const NormalHeader = () => {
         >
           <b className="text-color">Register Customer</b>
         </Link>
-      </li> */}
+      </li>
 
       <li className="nav-item">
         <Link to="/user/login" className="nav-link active" aria-current="page">
