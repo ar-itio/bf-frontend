@@ -136,7 +136,7 @@ const Footer = () => {
               <p class="d-flex justify-content-center align-items-center">
                 <span class="me-3 text-color">Login from here</span>
                 <Link to="/user/login" class="active">
-                  <button
+                  &nbsp;<button
                     type="button"
                     class="btn btn-outline-light btn-rounded bg-color custom-bg-text"
                   >

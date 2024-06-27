@@ -180,7 +180,7 @@ const RegisterComponent = () => {
           <div className="auth-success-message-panel">
             <div className="auth-success-icon">&#10004;</div>
           </div>
-          <h2 className="mb-4">Set Up Two-Factor Authentication</h2>
+          <h4 className="mb-4">Set Up Two-Factor Authentication</h4>
           <div className="auth-qr-code mb-4">
             <img src={authResponse.secretImageUri} alt="QR Code" />
           </div>
@@ -198,7 +198,7 @@ const RegisterComponent = () => {
               onChange={(e) => setOtpCode(e.target.value)}
             />
           </div>
-          <button
+          &nbsp;<button
             type="button"
             onClick={handleVerifyTfa}
             className={`auth-button btn btn-primary mt-3 ${otpCode.length < 6 ? "auth-button-disabled" : ""}`}
@@ -211,7 +211,7 @@ const RegisterComponent = () => {
           <div className="auth-success-message-panel">
             <div className="auth-success-icon">&#10004;</div>
           </div>
-          <h2 className="mb-4">Security</h2>
+          <h4 className="mb-4">Security</h4>
           <form onSubmit={handleRegisterUser}>
             <div className="auth-form-group form-check">
               <input

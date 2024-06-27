@@ -215,11 +215,11 @@ const UserForm = () => {
     <div>
       <div className="mt-2">
         <div
-          className="card form-card ms-5 me-5 mb-5 custom-bg border-color "
+          className="card   "
           style={{ height: "45rem" }}
         >
-          <div className="card-header custom-bg-text text-center bg-color">
-            <h2>User Tickets</h2>
+          <div className="card-header custom-bg-text text-center">
+            <h4 className=" text-color " >User Tickets</h4>
           </div>
           <div className="card-body" style={{ overflowY: "auto" }}>
             <div className="row">
@@ -320,7 +320,7 @@ const UserForm = () => {
                         <b>{detail.updateDate}</b>
                       </td>
                       <td>
-                        <button onClick={() => handleEditClick(index)}>
+                        &nbsp;<button onClick={() => handleEditClick(index)}>
                           Edit
                         </button>
                       </td>
@@ -340,7 +340,7 @@ const UserForm = () => {
               <h5 className="modal-title">
                 {editRowIndex !== null ? "Edit" : "Add"} Ticket
               </h5>
-              <button
+              &nbsp;<button
                 type="button"
                 className="btn-close"
                 onClick={handleCloseModal}
@@ -427,14 +427,14 @@ const UserForm = () => {
               </div>
             </div>
             <div className="modal-footer">
-              <button
+              &nbsp;<button
                 type="button"
                 className="btn btn-secondary"
                 onClick={handleCloseModal}
               >
                 Close
               </button>
-              <button
+              &nbsp;<button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleSaveChanges}

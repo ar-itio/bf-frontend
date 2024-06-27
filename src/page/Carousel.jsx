@@ -8,7 +8,7 @@ const Carousel = () => {
       data-bs-ride="false"
     >
       <div className="carousel-indicators">
-        <button
+        &nbsp;<button
           type="button"
           data-bs-target="#carouselExampleCaptions"
           data-bs-slide-to="0"
@@ -16,13 +16,13 @@ const Carousel = () => {
           aria-current="true"
           aria-label="Slide 1"
         ></button>
-        <button
+        &nbsp;<button
           type="button"
           data-bs-target="#carouselExampleCaptions"
           data-bs-slide-to="1"
           aria-label="Slide 2"
         ></button>
-        <button
+        &nbsp;<button
           type="button"
           data-bs-target="#carouselExampleCaptions"
           data-bs-slide-to="2"
@@ -40,7 +40,7 @@ const Carousel = () => {
           <img src={carousel} className="d-block w-100" alt="..." />
         </div>
       </div>
-      <button
+      &nbsp;<button
         className="carousel-control-prev"
         type="button"
         data-bs-target="#carouselExampleCaptions"
@@ -49,7 +49,7 @@ const Carousel = () => {
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Previous</span>
       </button>
-      <button
+      &nbsp;<button
         className="carousel-control-next"
         type="button"
         data-bs-target="#carouselExampleCaptions"
