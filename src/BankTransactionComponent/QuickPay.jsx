@@ -285,6 +285,7 @@ const QuickPay = () => {
                 className="btn bg-color custom-bg-text"
                 onClick={accountTransfer}
               >
+                {/*  */}
                 Transfer
               </button>
               <ToastContainer />
