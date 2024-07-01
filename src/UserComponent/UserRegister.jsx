@@ -198,7 +198,7 @@ const UserRegister = () => {
 
                 <div className="col-12 mb-3 text-color">
                     <ReCAPTCHA
-                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                    sitekey={'6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}
                     onChange={handleRecaptcha}
                   />  
                 </div>
