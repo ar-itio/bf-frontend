@@ -27,6 +27,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
+    console.log("env",process.env.REACT_APP_BASE_URL);
     const getCustomer = async () => {
       const customerData = await retrieveCustomerData();
       if (customerData) {
