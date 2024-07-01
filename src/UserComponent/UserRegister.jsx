@@ -5,12 +5,11 @@ import ReCAPTCHA from "react-google-recaptcha";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeft } from "react-icons/fa"; // Import the arrow left icon from Font Awesome
 
-
 const UserRegister = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    username: "",
+    userName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -45,8 +44,11 @@ const UserRegister = () => {
   const handleBackToLogin = () => {
     navigate("/");
   };
+
   const saveUser = (e) => {
     e.preventDefault();
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{10,}$/;
 
     if (user.password !== user.confirmPassword) {
       toast.error("Passwords do not match", {
@@ -58,6 +60,22 @@ const UserRegister = () => {
         draggable: true,
         progress: undefined,
       });
+      return;
+    }
+
+    if (!passwordRegex.test(user.password)) {
+      toast.error(
+        "Password must be at least 10 characters long, include at least one uppercase letter, one lowercase letter, and one special character",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
       return;
     }
 
@@ -97,7 +115,7 @@ const UserRegister = () => {
 
           setRegistrationSuccess(true);
         } else {
-          toast.error("It seems server is down", {
+          toast.error(res.responseMessage, {
             position: "top-center",
             autoClose: 1000,
             hideProgressBar: false,
@@ -130,23 +148,37 @@ const UserRegister = () => {
           </div>
           <div className="card-body">
             {registrationSuccess ? (
-              <div className="alert alert-success" role="alert">
-                We have sent an email with a confirmation link to your email address. In order to complete the registration process, please click on the confirmation link.
-                If you don't receive any email, please check your spam folder and wait for a moment to receive the email. Also, please verify that you entered a valid email address during registration.
+              <div>
+                <div className="alert alert-success" role="alert">
+                  We have sent an email with a confirmation link to your email
+                  address. In order to complete the registration process, please
+                  click on the confirmation link. If you don't receive any
+                  email, please check your spam folder and wait for a moment to
+                  receive the email. Also, please verify that you entered a
+                  valid email address during registration.
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-link text-color"
+                  style={{ textDecoration: "none" }} // Remove underline from links
+                  onClick={handleBackToLogin}
+                >
+                  <FaArrowLeft /> Back to Login
+                </button>
               </div>
             ) : (
               <form className="" onSubmit={saveUser}>
                 <div className="row-md-6 mb-3 text-color">
                   <label htmlFor="username" className="form-label">
-                    <>Username</>
+                    <>userName</>
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="name"
-                    name="name"
+                    id="userName"
+                    name="userName"
                     onChange={handleUserInput}
-                    value={user.name}
+                    value={user.userName}
                     required
                   />
                 </div>
@@ -197,10 +229,10 @@ const UserRegister = () => {
                 </div>
 
                 <div className="col-12 mb-3 text-color">
-                    <ReCAPTCHA
+                  <ReCAPTCHA
                     sitekey={'6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}
                     onChange={handleRecaptcha}
-                  />  
+                  />
                 </div>
 
                 <div className="d-flex aligns-items-center justify-content-center">
@@ -210,16 +242,14 @@ const UserRegister = () => {
                     value="Register User"
                   />
                 </div>
-                {/* <div className=" aligns-items-left justify-content-left "> */}
-                  <button
-                    type="button"
-                    className="btn btn-link text-color"
-                    style={{ textDecoration: "none" }} // Remove underline from links
-                    onClick={handleBackToLogin}
-                  >
-                   <FaArrowLeft /> Back
-                  </button>
-                {/* </div> */}
+                <button
+                  type="button"
+                  className="btn btn-link text-color"
+                  style={{ textDecoration: "none" }} // Remove underline from links
+                  onClick={handleBackToLogin}
+                >
+                  <FaArrowLeft /> Back
+                </button>
                 <ToastContainer />
               </form>
             )}

@@ -24,7 +24,7 @@ const UserLoginForm = () => {
 
   const loginAction = (e) => {
     e.preventDefault();
-    fetch(`https://api.pro.oyefin.com/api/user/login`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -193,10 +193,10 @@ const UserLoginForm = () => {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="emailId" className="form-label">
-                      <b>Email Id</b>
+                      <b>Email Id  or  User Name</b>
                     </label>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
                       id="emailId"
                       name="emailId"
