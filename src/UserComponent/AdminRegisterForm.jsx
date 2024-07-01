@@ -72,7 +72,7 @@ const AdminRegisterForm = () => {
 
   return (
     <div>
-      <div className="mt-2 ">
+      <div className="register ">
         <div
           className="card form-card border-color custom-bg"
           style={{ width: "25rem" }}
