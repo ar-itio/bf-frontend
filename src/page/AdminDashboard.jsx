@@ -338,7 +338,7 @@ const Dashboard = () => {
           aria-current="page"
           to="/Admin/ticket/detail/AdminTicket"
         >
-          <h3> user Ticket</h3>
+          <h3> User Ticket</h3>
           <div className="summary-details">
             <div className="summary-detail">
               <h6>Active</h6>
