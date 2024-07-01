@@ -24,7 +24,7 @@ const UserLoginForm = () => {
 
   const loginAction = (e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/user/login`, {
+    fetch(`https://api.pro.oyefin.com/api/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
